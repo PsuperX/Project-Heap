@@ -19,9 +19,6 @@ namespace SA
 
         public override void Execute()
         {
-            horizontal.Execute();
-            vertical.Execute();
-
             moveAmount = Mathf.Clamp01(Mathf.Abs(horizontal.value) + Math.Abs(vertical.value));
 
             if (cameraTransform.value != null)

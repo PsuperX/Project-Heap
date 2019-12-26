@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bacbfa7dc0fe3734d8edab696da8df1d, type: 3}
-  m_Name: Move Forward
+  m_Script: {fileID: 11500000, guid: 034edd6a9f7307741b5b416ea4dd83d9, type: 3}
+  m_Name: PivotTransform
   m_EditorClassIdentifier: 
-  movementSpeed: 4
+  value: {fileID: 0}

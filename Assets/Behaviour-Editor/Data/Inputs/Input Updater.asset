@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e77411d6f270b7845975fc777b20aa61, type: 3}
+  m_Name: Input Updater
+  m_EditorClassIdentifier: 
+  inputs:
+  - {fileID: 11400000, guid: 2715554fb4e84c246976c669a8ee68cf, type: 2}
+  - {fileID: 11400000, guid: 3a92215dc5cea1d499bf55abaac13b58, type: 2}
+  - {fileID: 11400000, guid: 319c457dd456ed144a8ef1542bdadf9a, type: 2}
+  - {fileID: 11400000, guid: 99b6d464b95edd94b8bd2d677ea3e5c2, type: 2}
