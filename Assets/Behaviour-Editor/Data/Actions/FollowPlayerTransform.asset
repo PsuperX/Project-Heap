@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba781460a5984704fb2139213badbc8a, type: 3}
+  m_Name: FollowPlayerTransform
+  m_EditorClassIdentifier: 
+  targetTransform: {fileID: 11400000, guid: cfc8f1e311c2c854ab9455e4a5934b46, type: 2}
+  currentTransform: {fileID: 11400000, guid: 98fb2e90a26011f4e8b0f0752c345991, type: 2}
+  speed: 9

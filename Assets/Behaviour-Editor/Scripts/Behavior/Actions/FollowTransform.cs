@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace SA
 {
-    [CreateAssetMenu]
+    [CreateAssetMenu(menuName ="Actions/Follow Transform")]
     public class FollowTransform : Action
     {
         public TransformVariable targetTransform;
