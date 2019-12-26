@@ -13,9 +13,11 @@ namespace SA
             float dst = 1.4f;
             RaycastHit hit;
             Debug.DrawRay(origin, dir * dst);
-            if (Physics.Raycast(origin, dir, out hit, dst))
+            if (Physics.Raycast(origin, dir, out hit, dst, states.ignoreLayers))
             {
                 Vector3 targetPosition = hit.point;
+                targetPosition.x = states.mTransform.position.x;
+                targetPosition.z = states.mTransform.position.z;
                 states.mTransform.position = targetPosition;
             }
         }

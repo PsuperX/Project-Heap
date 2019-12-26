@@ -14,10 +14,10 @@ TagManager:
   - 
   - 
   - PostProcessing
-  - 
-  - 
-  - 
-  - 
+  - Controller
+  - Ragdoll
+  - DamageColliders
+  - Cover
   - 
   - 
   - 

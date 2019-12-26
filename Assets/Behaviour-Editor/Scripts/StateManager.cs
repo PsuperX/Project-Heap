@@ -12,10 +12,13 @@ namespace SA
             public float horizontal;
             public float vertical;
             public float moveAmount;
-            public Vector2 moveDirection;
+            public Vector3 moveDirection;
         }
 
         public State currentState;
+
+        [HideInInspector]
+        public Animator anim;
 
         [HideInInspector]
         public float delta;
@@ -23,6 +26,8 @@ namespace SA
         public Transform mTransform;
         [HideInInspector]
         public Rigidbody rigid;
+        [HideInInspector]
+        public LayerMask ignoreLayers;
 
         private void Start()
         {
@@ -32,6 +37,9 @@ namespace SA
             rigid.drag = 4;
             rigid.angularDrag = 999;
             rigid.constraints = RigidbodyConstraints.FreezeRotation;
+
+            ignoreLayers = ~(1 << 9 | 1 << 3);
+            anim = GetComponentInChildren<Animator>();
         }
 
         private void FixedUpdate()
