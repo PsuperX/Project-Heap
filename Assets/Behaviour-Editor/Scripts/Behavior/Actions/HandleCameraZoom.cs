@@ -1,21 +1,19 @@
 ﻿using SO;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace SA
 {
-    [CreateAssetMenu(menuName ="Actions/Mono Actions/Camera Zoom")]
+    [CreateAssetMenu(menuName = "Actions/Mono Actions/Camera Zoom")]
     public class HandleCameraZoom : Action
     {
-        [SerializeField] TransformVariable actualCameraTrans;
+        public TransformVariable actualCameraTrans;
 
-        [SerializeField] InputButton aimInput;
+        public InputButton aimInput;
 
-        [SerializeField] float defaultZ;
-        [SerializeField] float zoomedZ;
+        public float defaultZ;
+        public float zoomedZ;
 
-        [SerializeField] float speed = 9;
+        public float speed = 9;
 
         float actualZ;
 

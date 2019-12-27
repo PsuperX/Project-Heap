@@ -13,7 +13,10 @@ namespace SA
             public float vertical;
             public float moveAmount;
             public Vector3 moveDirection;
+            public Vector3 lookDirection;
         }
+
+        public bool isAiming;
 
         public State currentState;
 
