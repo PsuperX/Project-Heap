@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetInput: {fileID: 11400000, guid: 319c457dd456ed144a8ef1542bdadf9a, type: 2}
   targetTransform: {fileID: 11400000, guid: 98fb2e90a26011f4e8b0f0752c345991, type: 2}
-  angle: 36.399914
+  angle: 0
   speed: 8
   negative: 0
   clamp: 0
