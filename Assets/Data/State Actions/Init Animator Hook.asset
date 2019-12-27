@@ -9,9 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5deb46212ef70dc42a32195d1369bc66, type: 3}
-  m_Name: Anim_isAiming
+  m_Script: {fileID: 11500000, guid: 7eee6f66a354a3141a9433db470d0256, type: 3}
+  m_Name: Init Animator Hook
   m_EditorClassIdentifier: 
-  targetAnimVar: aiming
-  targetBoolVar: {fileID: 11400000, guid: cc4bbaa2b9feb5847ad0a240c37c0645, type: 2}
-  reverse: 0

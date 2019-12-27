@@ -1778,6 +1778,10 @@ MonoBehaviour:
     vertical: 0
     moveAmount: 0
     moveDirection: {x: 0, y: 0, z: 0}
+    lookDirection: {x: 0, y: 0, z: 0}
+    aimPosition: {x: 0, y: 0, z: 0}
+  isAiming: 0
+  isInteracting: 0
   currentState: {fileID: 11400000, guid: 8c03a4e76ac97114bae2e130b66ade34, type: 2}
   anim: {fileID: 0}
   delta: 0
@@ -1786,6 +1790,8 @@ MonoBehaviour:
   ignoreLayers:
     serializedVersion: 2
     m_Bits: 0
+  animHook: {fileID: 0}
+  initActionsBatch: {fileID: 11400000, guid: b3ace2bceccda32449abe3e572c8237a, type: 2}
 --- !u!136 &1750178396
 CapsuleCollider:
   m_ObjectHideFlags: 0
