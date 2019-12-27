@@ -8,6 +8,7 @@ namespace SA
         public string targetInput;
         public bool isPressed;
         public KeyState keyState;
+        public SO.BoolVariable targetBoolVariable;
 
         public override void Execute()
         {
@@ -25,6 +26,9 @@ namespace SA
                 default:
                     break;
             }
+
+            if (targetBoolVariable)
+                targetBoolVariable.value = isPressed;
         }
 
         public enum KeyState
