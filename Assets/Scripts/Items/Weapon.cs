@@ -15,7 +15,7 @@ namespace SA
 
         public RuntimeWeapon runtimeW;
 
-        void Init()
+        public void Init()
         {
             runtimeW = new RuntimeWeapon();
             runtimeW.modelInstance = Instantiate(modelPrefab);

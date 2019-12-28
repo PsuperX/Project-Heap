@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace SA
 {
@@ -20,7 +18,9 @@ namespace SA
         public Transform shoulder;
         public Transform aimPivot;
         Vector3 lookDir;
-    
+
+        Weapon curWeapon;
+
         public void Init(StateManager st)
         {
             states = st;
@@ -44,6 +44,14 @@ namespace SA
         {
             lookDir = states.movementValues.aimPosition - aimPivot.position;
             HandleShoulder();
+        }
+
+        public void LoadWeapon(Weapon w)
+        {
+            curWeapon = w;
+            rh_target.localPosition = w.rightHandPosition.value;
+            rh_target.localEulerAngles = w.rightHandEulers.value;
+            lh_target = w.runtimeW.weaponHook.leftHandIK;
         }
 
         void HandleShoulder()
@@ -107,7 +115,7 @@ namespace SA
             if (!states.isAiming)
             {
                 //if (onIdleDisableOh)
-                    //o_h_weight = 0;
+                //o_h_weight = 0;
             }
 
             l_weight = Mathf.Lerp(l_weight, t_l_weight, states.delta * 1);

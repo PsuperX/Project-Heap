@@ -5,6 +5,7 @@ namespace SA
     public class StateManager : MonoBehaviour
     {
         public MovementValues movementValues;
+        public Inventory inventory;
 
         [System.Serializable]
         public struct MovementValues

@@ -27,10 +27,18 @@ namespace SA
         public Item GetItemInstance(string targetID)
         {
             Item defaultItem = GetItem(targetID);
-            Item newItem = Instantiate(defaultItem);
-            newItem.name = defaultItem.name;
+            if (defaultItem != null)
+            {
+                Item newItem = Instantiate(defaultItem);
+                newItem.name = defaultItem.name;
+                return newItem;
+            }
+            else
+            {
+                Debug.Log("Weapon with ID: " + targetID + " was not found!");
+                return null;
+            }
 
-            return newItem;
         }
 
         Item GetItem(string targetID)

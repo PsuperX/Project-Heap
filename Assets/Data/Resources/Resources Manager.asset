@@ -9,9 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b4c8d16f34f1fd46be2086b361b33c2, type: 3}
-  m_Name: InitControllerBatch
+  m_Script: {fileID: 11500000, guid: 51841f544c922624c8c821b343624b20, type: 3}
+  m_Name: Resources Manager
   m_EditorClassIdentifier: 
-  inputs:
-  - {fileID: 11400000, guid: 56a701d5d30741c41917a92cb14d8081, type: 2}
-  - {fileID: 11400000, guid: f3f4509a00b5e2642b8a6eac9acc89a5, type: 2}
+  allItems:
+  - {fileID: 11400000, guid: 712a42b23b3cedc49a0090f7b54f24b6, type: 2}
