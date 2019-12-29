@@ -535,6 +535,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 34a865b35aaaa8346a96ebcd588ab9b0, type: 2}
   - {fileID: 11400000, guid: 52dc7655aa5678b4cae60e8d072107dd, type: 2}
   - {fileID: 11400000, guid: 327c1d2ad2a1d3947baf5f573edfa047, type: 2}
+  - {fileID: 11400000, guid: f7f7d66cfe866204f88d9b86e95f54bc, type: 2}
   updateActions: []
 --- !u!114 &216652793
 MonoBehaviour:
@@ -1785,6 +1786,8 @@ MonoBehaviour:
     curWeapon: {fileID: 0}
   isAiming: 0
   isInteracting: 0
+  isShooting: 0
+  isCrouching: 0
   currentState: {fileID: 11400000, guid: 8c03a4e76ac97114bae2e130b66ade34, type: 2}
   anim: {fileID: 0}
   delta: 0

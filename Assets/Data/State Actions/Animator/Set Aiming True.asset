@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adede9b0bdd0136419d6c6b9f9c55a19, type: 3}
   m_Name: Set Aiming True
   m_EditorClassIdentifier: 
-  target: 
-  status: 0
+  target: aiming
+  status: 1

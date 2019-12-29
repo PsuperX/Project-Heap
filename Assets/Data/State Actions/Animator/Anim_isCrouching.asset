@@ -9,11 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8b969638def4ef4f829433cb188f3c2, type: 3}
-  m_Name: ShootButton
+  m_Script: {fileID: 11500000, guid: 5deb46212ef70dc42a32195d1369bc66, type: 3}
+  m_Name: Anim_isCrouching
   m_EditorClassIdentifier: 
-  targetInput: Fire1
-  isPressed: 0
-  keyState: 1
-  updateBoolVar: 0
-  targetBoolVariable: {fileID: 0}
+  targetAnimVar: crouch
+  targetBoolVar: {fileID: 11400000, guid: fb32522da2a31fa46a3e3dfe52f19c62, type: 2}
+  reverse: 0

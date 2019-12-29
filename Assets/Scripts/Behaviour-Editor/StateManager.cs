@@ -22,6 +22,12 @@ namespace SA
         public bool isAiming;
         public bool isInteracting;
         public bool isShooting;
+        public bool isCrouching;
+
+        public void SetCrouching()
+        {
+            isCrouching = !isCrouching;
+        }
 
         public State currentState;
 

@@ -8,6 +8,7 @@ namespace SA
         public string targetInput;
         public bool isPressed;
         public KeyState keyState;
+        public bool updateBoolVar = true;
         public SO.BoolVariable targetBoolVariable;
 
         public override void Execute()
@@ -27,8 +28,17 @@ namespace SA
                     break;
             }
 
-            if (targetBoolVariable)
-                targetBoolVariable.value = isPressed;
+            if (updateBoolVar)
+            {
+                if (targetBoolVariable)
+                {
+                    targetBoolVariable.value = isPressed;
+                }
+                else
+                {
+                    Debug.Log("No boolVariable assigned in " + this.name);
+                }
+            }
         }
 
         public enum KeyState

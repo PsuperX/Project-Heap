@@ -15,9 +15,11 @@ MonoBehaviour:
   horizontal: {fileID: 11400000, guid: 2715554fb4e84c246976c669a8ee68cf, type: 2}
   vertical: {fileID: 11400000, guid: 3a92215dc5cea1d499bf55abaac13b58, type: 2}
   aimInput: {fileID: 11400000, guid: cb79b64c116267f44bf44c5d33b0822b, type: 2}
+  shootInput: {fileID: 11400000, guid: 9e2d541bb243a904782f5f67d70efb23, type: 2}
+  crouchInput: {fileID: 11400000, guid: 574f18118ec088c409e446f2df2a1018, type: 2}
   moveAmount: 0
   moveDirection: {x: 0, y: 0, z: 0}
   cameraTransform: {fileID: 11400000, guid: 98fb2e90a26011f4e8b0f0752c345991, type: 2}
   pivotTransform: {fileID: 11400000, guid: f8b8be3cea0b5d64e94d80f1667d63e9, type: 2}
   playerStates: {fileID: 11400000, guid: b03dd0e6b749c5140a7f56b8bb2b81b9, type: 2}
-  debugAim: 1
+  debugAim: 0

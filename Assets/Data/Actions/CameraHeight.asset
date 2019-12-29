@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f7b86985b69b98246ba1f34425d356d2, type: 3}
-  m_Name: CameraZoom
+  m_Name: CameraHeight
   m_EditorClassIdentifier: 
-  targetTransform: {fileID: 11400000, guid: 24296d51c46e20547930e04e8d0f6af9, type: 2}
-  targetBool: {fileID: 11400000, guid: cc4bbaa2b9feb5847ad0a240c37c0645, type: 2}
-  defaultValue: -2.5
-  affectedValue: -0.7
-  targetAxis: 4
+  targetTransform: {fileID: 11400000, guid: f8b8be3cea0b5d64e94d80f1667d63e9, type: 2}
+  targetBool: {fileID: 11400000, guid: fb32522da2a31fa46a3e3dfe52f19c62, type: 2}
+  defaultValue: 1.575
+  affectedValue: 1
+  targetAxis: 2
   speed: 9
