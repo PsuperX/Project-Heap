@@ -15,5 +15,17 @@ namespace SA
 
             return resourcesManager;
         }
+
+        static AmmoPool ammoPool;
+        public static AmmoPool GetAmmoPool()
+        {
+            if (!ammoPool)
+            {
+                ammoPool = Resources.Load("Ammo Pool") as AmmoPool;
+                ammoPool.Init();
+            }
+
+            return ammoPool;
+        }
     }
 }

@@ -5,12 +5,5 @@
     {
         public string weaponID;
         public Weapon curWeapon;
-
-        public void ReloadCurrentWeapon()
-        {
-            int target = curWeapon.magazineBullets;
-
-            curWeapon.curBullets = target;
-        }
     }
 }

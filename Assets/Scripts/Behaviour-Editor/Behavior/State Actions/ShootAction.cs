@@ -8,7 +8,8 @@ namespace SA
         public override void Execute(StateManager states)
         {
             #region Reloading
-            if (states.inventory.curWeapon.curBullets < states.inventory.curWeapon.magazineBullets)
+            if (states.inventory.curWeapon.curBullets < states.inventory.curWeapon.magazineBullets
+                && states.inventory.curWeapon.ammoType.carryingAmount > 0)
             {
                 if (states.isReloading)
                 {
@@ -20,11 +21,12 @@ namespace SA
                     }
                     else
                     {
+                        // Wait for the animation to end
                         if (!states.anim.GetBool("isInteracting"))
                         {
                             states.isReloading = false;
                             states.isInteracting = false;
-                            states.inventory.ReloadCurrentWeapon();
+                            ReloadCurrentWeapon(states.inventory.curWeapon);
                         }
                     }
 
@@ -58,8 +60,19 @@ namespace SA
                 {
                     states.isReloading = true;
                 }
-            } 
+            }
             #endregion
+        }
+
+        public void ReloadCurrentWeapon(Weapon curWeapon)
+        {
+            int target = curWeapon.magazineBullets;
+            if (target > curWeapon.ammoType.carryingAmount)
+            {
+                target = curWeapon.magazineBullets - curWeapon.ammoType.carryingAmount;
+            }
+            curWeapon.ammoType.carryingAmount -= target;
+            curWeapon.curBullets = target;
         }
     }
 }

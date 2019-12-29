@@ -36,7 +36,7 @@ namespace SA
                 }
                 else
                 {
-                    Debug.Log("No boolVariable assigned in " + this.name);
+                    Debug.LogError("No boolVariable assigned in " + this.name);
                 }
             }
         }

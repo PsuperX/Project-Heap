@@ -17,7 +17,7 @@ MonoBehaviour:
   aimInput: {fileID: 11400000, guid: cb79b64c116267f44bf44c5d33b0822b, type: 2}
   shootInput: {fileID: 11400000, guid: 9e2d541bb243a904782f5f67d70efb23, type: 2}
   crouchInput: {fileID: 11400000, guid: 574f18118ec088c409e446f2df2a1018, type: 2}
-  ReloadInput: {fileID: 11400000, guid: 80a5372163954ac43a8ef126af01407c, type: 2}
+  reloadInput: {fileID: 11400000, guid: 9c54adc7923aa984faef348bb769a75f, type: 2}
   moveAmount: 0
   moveDirection: {x: 0, y: 0, z: 0}
   cameraTransform: {fileID: 11400000, guid: 98fb2e90a26011f4e8b0f0752c345991, type: 2}

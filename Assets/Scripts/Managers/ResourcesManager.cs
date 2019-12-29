@@ -19,7 +19,7 @@ namespace SA
                 }
                 else
                 {
-                    Debug.Log("There's two items named: " + allItems[i].name + " ! That's ILLEGAL !");
+                    Debug.LogError("There's two items named: " + allItems[i].name + " ! That's ILLEGAL !");
                 }
             }
         }
@@ -35,7 +35,7 @@ namespace SA
             }
             else
             {
-                Debug.Log("Weapon with ID: " + targetID + " was not found!");
+                Debug.LogError("Weapon with ID: " + targetID + " was not found!");
                 return null;
             }
 
