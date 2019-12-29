@@ -47,6 +47,43 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   leftHandIK: {fileID: 3255362611189989369}
   lastFired: 0
+  slider: {fileID: 3503741273978980937}
+  sliderCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0.2416422
+      outSlope: 0.2416422
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.13349515
+    - serializedVersion: 3
+      time: 0.5
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: -4.8328485
+      outSlope: -4.8328485
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.053398013
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  multiplier: 0.09
+  sliderSpeed: 9
+  isShooting: 0
 --- !u!1 &6521092825273520932
 GameObject:
   m_ObjectHideFlags: 0
@@ -70,13 +107,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6521092825273520932}
-  m_LocalRotation: {x: -0.83147955, y: 0.22918928, z: -0.06845652, w: 0.50142574}
-  m_LocalPosition: {x: 0.4044, y: -0.1433, z: 0.0755}
+  m_LocalRotation: {x: -0.60807115, y: 0.19161971, z: -0.14316115, w: 0.75699157}
+  m_LocalPosition: {x: 0.3932, y: -0.1077, z: -0.0127}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1048225010148764271}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: -53.367004, y: -215.168, z: 228.92}
+  m_LocalEulerAnglesHint: {x: -59.968002, y: -291.948, z: 296.014}
 --- !u!1001 &3503741273978851535
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -149,6 +186,12 @@ PrefabInstance:
 --- !u!4 &3503741273978980943 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 4974c3aa5aa3dca4e847ca65904285a1,
+    type: 3}
+  m_PrefabInstance: {fileID: 3503741273978851535}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &3503741273978980937 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 400006, guid: 4974c3aa5aa3dca4e847ca65904285a1,
     type: 3}
   m_PrefabInstance: {fileID: 3503741273978851535}
   m_PrefabAsset: {fileID: 0}

@@ -1,0 +1,87 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65904db232cd25b40898ecf9cd40492d, type: 3}
+  m_Name: Glock
+  m_EditorClassIdentifier: 
+  curBullets: 30
+  magazineBullets: 30
+  fireRate: 0.2
+  rightHandPosition: {fileID: 11400000, guid: cb8e46df4b1868d4e84f8b6c6cac799a, type: 2}
+  rightHandEulers: {fileID: 11400000, guid: d67e88426fad86b4093899999ad41023, type: 2}
+  modelPrefab: {fileID: 1669814075106190, guid: 37f7503b253974b42a22eb2393b4f6c4,
+    type: 3}
+  recoilY:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0.10635877
+      outSlope: 0.10635877
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.110792
+      value: 0.0117837
+      inSlope: -0.03145952
+      outSlope: -0.03145952
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.56184846
+      outWeight: 0.0664759
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: -0.013251905
+      outSlope: -0.013251905
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  recoilZ:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: -0.10635877
+      outSlope: -0.10635877
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.110792
+      value: -0.0117837
+      inSlope: 0.032516092
+      outSlope: 0.032516092
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.56184846
+      outWeight: 0.06920551
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0.013251905
+      outSlope: 0.013251905
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
