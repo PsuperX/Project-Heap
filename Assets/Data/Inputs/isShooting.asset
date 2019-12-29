@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b94b33feb8aa43b43870a6060b1f5374, type: 3}
-  m_Name: Rifle Right Hand Eulers
+  m_Script: {fileID: 11500000, guid: 7b70bab822f15f64f9e4f622f615213e, type: 3}
+  m_Name: isAiming
   m_EditorClassIdentifier: 
-  value: {x: -6.522, y: 15.574, z: -90}
+  value: 0

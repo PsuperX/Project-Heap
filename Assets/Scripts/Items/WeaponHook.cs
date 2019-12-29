@@ -6,6 +6,9 @@ namespace SA
     {
         public Transform leftHandIK;
 
+        [HideInInspector]
+        public float lastFired;
+
         ParticleSystem[] particles;
         AudioSource audioSource;
 
@@ -21,7 +24,7 @@ namespace SA
             particles = GetComponentsInChildren<ParticleSystem>();
         }
 
-        void Shoot()
+        public void Shoot()
         {
             if (particles != null)
             {

@@ -9,7 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b94b33feb8aa43b43870a6060b1f5374, type: 3}
-  m_Name: Rifle Right Hand Eulers
+  m_Script: {fileID: 11500000, guid: 94d667b99d61e734d8c18b115624ca8a, type: 3}
+  m_Name: Update Animator Hook
   m_EditorClassIdentifier: 
-  value: {x: -6.522, y: 15.574, z: -90}

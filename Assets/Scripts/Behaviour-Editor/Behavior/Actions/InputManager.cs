@@ -10,6 +10,7 @@ namespace SA
         public InputAxis horizontal;
         public InputAxis vertical;
         public InputButton aimInput;
+        public InputButton shootInput;
 
         public float moveAmount;
         public Vector3 moveDirection;
@@ -33,10 +34,12 @@ namespace SA
 
             if (playerStates.value != null)
             {
+                // Update movement values
                 playerStates.value.movementValues.horizontal = horizontal.value;
                 playerStates.value.movementValues.vertical = vertical.value;
                 playerStates.value.movementValues.moveAmount = moveAmount;
                 playerStates.value.movementValues.moveDirection = moveDirection;
+                playerStates.value.isShooting = shootInput.isPressed;
 
                 if (!debugAim)
                     playerStates.value.isAiming = aimInput.isPressed;

@@ -2,7 +2,7 @@
 
 namespace SA
 {
-    [CreateAssetMenu(menuName = "Actions/State Action/Load Weapon")]
+    [CreateAssetMenu(menuName = "Actions/State Actions/Load Weapon")]
     public class LoadWeapon : StateActions
     {
         public override void Execute(StateManager states)

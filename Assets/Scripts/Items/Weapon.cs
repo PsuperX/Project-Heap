@@ -15,6 +15,9 @@ namespace SA
 
         public RuntimeWeapon runtimeW;
 
+        public AnimationCurve recoilY;
+        public AnimationCurve recoilZ;
+
         public void Init()
         {
             runtimeW = new RuntimeWeapon();

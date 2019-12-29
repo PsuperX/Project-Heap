@@ -21,6 +21,7 @@ namespace SA
 
         public bool isAiming;
         public bool isInteracting;
+        public bool isShooting;
 
         public State currentState;
 

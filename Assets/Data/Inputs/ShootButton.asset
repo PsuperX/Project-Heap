@@ -9,7 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b94b33feb8aa43b43870a6060b1f5374, type: 3}
-  m_Name: Rifle Right Hand Eulers
+  m_Script: {fileID: 11500000, guid: e8b969638def4ef4f829433cb188f3c2, type: 3}
+  m_Name: ShootButton
   m_EditorClassIdentifier: 
-  value: {x: -6.522, y: 15.574, z: -90}
+  targetInput: Fire1
+  isPressed: 0
+  keyState: 1
+  targetBoolVariable: {fileID: 11400000, guid: cc4bbaa2b9feb5847ad0a240c37c0645, type: 2}
