@@ -7,6 +7,37 @@ namespace SA
     {
         public override void Execute(StateManager states)
         {
+            #region Reloading
+            if (states.inventory.curWeapon.curBullets < states.inventory.curWeapon.magazineBullets)
+            {
+                if (states.isReloading)
+                {
+                    if (!states.isInteracting)
+                    {
+                        states.isInteracting = true;
+                        states.PlayAnimation("rifle_reload");
+                        states.anim.SetBool("isInteracting", true);
+                    }
+                    else
+                    {
+                        if (!states.anim.GetBool("isInteracting"))
+                        {
+                            states.isReloading = false;
+                            states.isInteracting = false;
+                            states.inventory.ReloadCurrentWeapon();
+                        }
+                    }
+
+                    return;
+                }
+            }
+            else
+            {
+                states.isReloading = false;
+            }
+            #endregion
+
+            #region Shooting
             if (states.isShooting)
             {
                 states.isShooting = false;
@@ -23,7 +54,12 @@ namespace SA
                         w.curBullets--;
                     }
                 }
-            }
+                else
+                {
+                    states.isReloading = true;
+                }
+            } 
+            #endregion
         }
     }
 }
