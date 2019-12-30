@@ -1329,6 +1329,7 @@ GameObject:
   - component: {fileID: 1032598338}
   - component: {fileID: 1032598337}
   - component: {fileID: 1032598336}
+  - component: {fileID: 1032598339}
   m_Layer: 0
   m_Name: Cube (1)
   m_TagString: Untagged
@@ -1408,6 +1409,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1032598334}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1032598339
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1032598334}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 157e928e03331e44db003eb9247c8acf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetParticle: Barrel Explosion Prefab
 --- !u!1 &1272922272
 GameObject:
   m_ObjectHideFlags: 0

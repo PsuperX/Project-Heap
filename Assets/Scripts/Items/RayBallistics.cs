@@ -11,11 +11,20 @@ namespace SA
             Vector3 dir = states.movementValues.aimPosition;
 
             Ray ray = new Ray(origin, dir);
-            if(Physics.Raycast(ray ,out RaycastHit hit, 100, states.ignoreLayers))
+            if (Physics.Raycast(ray, out RaycastHit hit, 100, states.ignoreLayers))
             {
-                GameObject hitParticle = GameManagers.GetObjectPooler().RequestObject("bullet_hit");
-                hitParticle.transform.position = hit.point;
-                hitParticle.transform.rotation = Quaternion.LookRotation(hit.normal);
+                IHittable hittable = hit.transform.GetComponentInParent<IHittable>();
+
+                if (hittable == null)
+                {
+                    GameObject hitParticle = GameManagers.GetObjectPooler().RequestObject("bullet_hit");
+                    hitParticle.transform.position = hit.point;
+                    hitParticle.transform.rotation = Quaternion.LookRotation(hit.normal);
+                }
+                else
+                {
+                    hittable.OnHit(states, w, dir, hit.point, hit.normal);
+                }
             }
         }
     }

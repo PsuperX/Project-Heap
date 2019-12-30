@@ -2,7 +2,7 @@
 
 namespace SA
 {
-    public class StateManager : MonoBehaviour
+    public class StateManager : MonoBehaviour, IHittable
     {
         public MovementValues movementValues;
         public Inventory inventory;
@@ -98,6 +98,11 @@ namespace SA
         public void PlayAnimation(string targetAnim)
         {
             anim.CrossFade(targetAnim, .2f);
+        }
+
+        public void OnHit(StateManager shooter, Weapon w, Vector3 dir, Vector3 pos, Vector3 normal)
+        {
+
         }
     }
 }

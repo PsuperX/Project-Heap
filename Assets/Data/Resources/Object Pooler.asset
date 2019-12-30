@@ -12,4 +12,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca3c5fac6fb81c94c92d8d758f85b3eb, type: 3}
   m_Name: Object Pooler
   m_EditorClassIdentifier: 
-  pool: []
+  pool:
+  - prefab: {fileID: 1133313454119596, guid: 79927c6543a058b4383885fac101fe2e, type: 3}
+    budget: 5
+    cur: 0
+    createdObjects:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+  - prefab: {fileID: 1126181125208960, guid: 432f6ddf810fdad4baa8f47fca7e7ad4, type: 3}
+    budget: 5
+    cur: 2
+    createdObjects:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
