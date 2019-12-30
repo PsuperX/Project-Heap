@@ -1899,6 +1899,7 @@ MonoBehaviour:
     animLength: 0
     vaultT: 0
     isInit: 0
+  ballisticsAction: {fileID: 11400000, guid: d6e2653347cfb2243a1e7a613fde7273, type: 2}
 --- !u!136 &1750178396
 CapsuleCollider:
   m_ObjectHideFlags: 0

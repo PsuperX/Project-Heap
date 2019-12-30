@@ -58,6 +58,9 @@ namespace SA
         public VaultData vaultData;
         public AnimHashes hashes;
 
+        [Header("Ballistics")]
+        public Ballistics ballisticsAction;
+
         private void Start()
         {
             mTransform = this.transform;

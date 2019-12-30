@@ -53,6 +53,11 @@ namespace SA
                         w.runtimeW.weaponHook.Shoot();
                         states.animHook.RecoilAnim();
 
+                            if (states.ballisticsAction)
+                                states.ballisticsAction.Execute(states, w);
+                            else
+                                Debug.Log("No ballistic action assigned in: " + states.mTransform.name);
+
                         w.curBullets--;
                     }
                 }
