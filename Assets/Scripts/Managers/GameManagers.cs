@@ -4,6 +4,18 @@ namespace SA
 {
     public static class GameManagers
     {
+        static ObjectPooler objectPooler;
+        public static ObjectPooler GetObjectPooler()
+        {
+            if (!objectPooler)
+            {
+                objectPooler = Resources.Load("Object Pooler") as ObjectPooler;
+                objectPooler.Init();
+            }
+
+            return objectPooler;
+        }
+
         static ResourcesManager resourcesManager;
         public static ResourcesManager GetResourcesManager()
         {
