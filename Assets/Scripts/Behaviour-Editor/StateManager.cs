@@ -24,6 +24,7 @@ namespace SA
         public bool isShooting;
         public bool isCrouching;
         public bool isReloading;
+        public bool isVaulting;
 
         public void SetCrouching()
         {
@@ -53,6 +54,10 @@ namespace SA
 
         public StateActions initActionsBatch;
 
+        [Header("Vaulting Options")]
+        public VaultData vaultData;
+        public AnimHashes hashes;
+
         private void Start()
         {
             mTransform = this.transform;
@@ -66,6 +71,7 @@ namespace SA
             anim = GetComponentInChildren<Animator>();
 
             initActionsBatch.Execute(this);
+            hashes = new AnimHashes();
         }
 
         private void FixedUpdate()

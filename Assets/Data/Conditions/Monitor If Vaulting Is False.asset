@@ -9,9 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb0d03a06d496f0429046870b1a5f473, type: 3}
-  m_Name: Ammo Pool
+  m_Script: {fileID: 11500000, guid: a100b3b4001a35e439ca5a30f02f56dc, type: 3}
+  m_Name: Monitor If Vaulting Is False
   m_EditorClassIdentifier: 
-  all_ammo:
-  - {fileID: 11400000, guid: 4338016510ec66d45ab0f890c20f0df6, type: 2}
-  - {fileID: 11400000, guid: ec46ae67f5539bd4e94d9016c0e5f5f3, type: 2}
+  description: 

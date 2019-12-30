@@ -15,6 +15,7 @@ MonoBehaviour:
   curBullets: 30
   magazineBullets: 30
   fireRate: 0.2
+  ammoType: {fileID: 11400000, guid: ec46ae67f5539bd4e94d9016c0e5f5f3, type: 2}
   rightHandPosition: {fileID: 11400000, guid: cb8e46df4b1868d4e84f8b6c6cac799a, type: 2}
   rightHandEulers: {fileID: 11400000, guid: d67e88426fad86b4093899999ad41023, type: 2}
   modelPrefab: {fileID: 1669814075106190, guid: 37f7503b253974b42a22eb2393b4f6c4,
