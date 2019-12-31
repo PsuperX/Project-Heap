@@ -9,8 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc3284eace5a64d4bb516df7d7effdb9, type: 3}
-  m_Name: PunSceneSettingsFile
+  m_Script: {fileID: 11500000, guid: 7b70bab822f15f64f9e4f622f615213e, type: 3}
+  m_Name: isConnected
   m_EditorClassIdentifier: 
-  SceneSettingsListFoldoutOpen: 1
-  MinViewIdPerScene: []
+  value: 0

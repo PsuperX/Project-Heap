@@ -674,6 +674,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9186563ccb60cb4e8b56ee5e54e6815, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  logLevel: 0
+  gameVersion: 1
+  onConnectingToMaster: {fileID: 11400000, guid: 39c008a48f8cada42925d089eca1169e,
+    type: 2}
+  isConnected: {fileID: 11400000, guid: 898b8d351a5cb874781c967ea6a90fc2, type: 2}
 --- !u!1 &63825490
 GameObject:
   m_ObjectHideFlags: 0
@@ -1665,9 +1670,9 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.62352943, g: 0.84313726, b: 0.9607843, a: 1}
-    m_HighlightedColor: {r: 0.9411765, g: 0.9098039, b: 0.6627451, a: 1}
-    m_PressedColor: {r: 0.7137255, g: 0.9254902, b: 1, a: 1}
+    m_NormalColor: {r: 0.62352943, g: 0.8431373, b: 0.9607844, a: 1}
+    m_HighlightedColor: {r: 0.94117653, g: 0.909804, b: 0.6627451, a: 1}
+    m_PressedColor: {r: 0.7137255, g: 0.92549026, b: 1, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -1680,14 +1685,14 @@ MonoBehaviour:
     m_HighlightedTrigger: Highlighted
     m_PressedTrigger: Pressed
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 150773866}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: DelayedRaise
-        m_Mode: 4
+      - m_Target: {fileID: 11400000, guid: 8328bdf4e19db99408e4d0eda80eff29, type: 2}
+        m_MethodName: Raise
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1696,7 +1701,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 11400000, guid: 43694f6f4e6651f4da7c1a57b4c69207, type: 2}
+      - m_Target: {fileID: 1790671092}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 11400000, guid: 9195cf3ade3534f49b168bbc6fcbc45d, type: 2}
         m_MethodName: Raise
         m_Mode: 1
         m_Arguments:
@@ -1705,10 +1721,10 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 11400000, guid: ffe483451fc4525419f76e8b804eaf1d, type: 2}
-        m_MethodName: Set
+      - m_Target: {fileID: 335059283}
+        m_MethodName: SetActive
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1716,7 +1732,7 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
@@ -3916,6 +3932,8 @@ GameObject:
   m_Component:
   - component: {fileID: 320534617}
   - component: {fileID: 320534618}
+  - component: {fileID: 320534620}
+  - component: {fileID: 320534619}
   m_Layer: 0
   m_Name: MM Events
   m_TagString: Untagged
@@ -3956,6 +3974,82 @@ MonoBehaviour:
       - m_Target: {fileID: 59790813}
         m_MethodName: LoadCurrentRoom
         m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+--- !u!114 &320534619
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 320534616}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01a055b694402bd469a86915f1319e61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 39c008a48f8cada42925d089eca1169e, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 320534620}
+        m_MethodName: Raise
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+--- !u!114 &320534620
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 320534616}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5c1740c277785241b2a25ac4d0bf5f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  raiseOnEnable: 0
+  raiseOnDisable: 0
+  targetBool: {fileID: 11400000, guid: 898b8d351a5cb874781c967ea6a90fc2, type: 2}
+  IfTrue:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 150773865}
+        m_MethodName: set_interactable
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  IfFalse:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 150773865}
+        m_MethodName: set_interactable
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
