@@ -17,6 +17,8 @@ namespace SO
         {
             if (gameEvent != null)
                 gameEvent.Register(this);
+            else
+                Debug.Log("No GameEvent assigned in: " + transform.name);
         }
 
         void OnEnable()
