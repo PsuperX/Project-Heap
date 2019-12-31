@@ -18,6 +18,7 @@ namespace SA
 
         public SO.GameEvent onConnectingToMaster;
         public SO.BoolVariable isConnected;
+        public SO.BoolVariable isMultiplayer;
 
 
         #region Init
@@ -48,20 +49,73 @@ namespace SA
         #region Photon Callbacks
         public override void OnConnectedToMaster()
         {
-            Debug.Log("Connected Succesfully");
+            Debug.Log("Connected Successfully");
             isConnected.value = true;
             onConnectingToMaster.Raise();
         }
-        
+
         public override void OnDisconnected(DisconnectCause cause)
         {
             isConnected.value = false;
             onConnectingToMaster.Raise();
             Debug.Log("Disconnected with reason " + cause);
         }
+
+        /// <summary>
+        /// Runs when the room is created
+        /// Only runs on the player who created the run
+        /// </summary>
+        public override void OnCreatedRoom()
+        {
+            Room r = ScriptableObject.CreateInstance<Room>();
+
+            PhotonNetwork.CurrentRoom.CustomProperties.TryGetValue("scene", out object sceneName);
+            r.sceneName = (string)sceneName;
+            r.roomName = PhotonNetwork.CurrentRoom.Name;
+
+            GameManagers.GetResourcesManager().curRoom.value = r;
+            Debug.Log("Room " + r.roomName + " Created Successfully");
+        }
+
+        public override void OnJoinedRoom()
+        {
+
+        }
         #endregion
 
         #region Manager Methods
+        public void CreateRoom(RoomButton b)
+        {
+            if (isMultiplayer.value)
+            {
+                if (!isConnected.value)
+                {
+                    //TODO: Make stuff for when not connected but still on multiplayer
+                }
+                else
+                {
+                    ExitGames.Client.Photon.Hashtable properties = new ExitGames.Client.Photon.Hashtable
+                    {
+                        {"scene",b.scene }
+                    };
+
+                    RoomOptions roomOptions = new RoomOptions
+                    {
+                        MaxPlayers = 4,
+                        CustomRoomProperties = properties
+                    };
+
+                    PhotonNetwork.CreateRoom(null, roomOptions, TypedLobby.Default);
+                }
+            }
+            else // is playing solo
+            {
+                Room r = ScriptableObject.CreateInstance<Room>();
+                r.sceneName = b.scene;
+                GameManagers.GetResourcesManager().curRoom.Set(r);
+            }
+        }
+
         void LoadMainMenu()
         {
             StartCoroutine(LoadScene("MainMenu", OnMainMenu));

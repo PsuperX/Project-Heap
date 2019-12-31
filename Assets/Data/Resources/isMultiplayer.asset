@@ -9,8 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 04eda51cf4159b849abbe7c4450b585b, type: 3}
-  m_Name: Current Room
+  m_Script: {fileID: 11500000, guid: 7b70bab822f15f64f9e4f622f615213e, type: 3}
+  m_Name: isMultiplayer
   m_EditorClassIdentifier: 
-  value: {fileID: 0}
-  roomButtonVar: {fileID: 11400000, guid: bd47ceaf17a01db4798d7743c9e4a846, type: 2}
+  value: 0
