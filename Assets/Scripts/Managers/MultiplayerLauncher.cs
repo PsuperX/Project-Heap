@@ -17,6 +17,7 @@ namespace SA
         public uint gameVersion = 1;
 
         public SO.GameEvent onConnectingToMaster;
+        public SO.GameEvent onJoinedRoom;
         public SO.BoolVariable isConnected;
         public SO.BoolVariable isMultiplayer;
 
@@ -63,7 +64,7 @@ namespace SA
 
         /// <summary>
         /// Runs when the room is created
-        /// Only runs on the player who created the run
+        /// Only runs on the player who created the room
         /// </summary>
         public override void OnCreatedRoom()
         {
@@ -77,13 +78,24 @@ namespace SA
             Debug.Log("Room " + r.roomName + " Created Successfully");
         }
 
+        /// <summary>
+        /// Runs on everyone who join a room (even after creating)
+        /// </summary>
         public override void OnJoinedRoom()
         {
+            Debug.Log("Joined room");
+            onJoinedRoom.Raise();
 
+            InstanciateMultiplayerManager();
         }
         #endregion
 
         #region Manager Methods
+        void InstanciateMultiplayerManager()
+        {
+            PhotonNetwork.Instantiate("MultiplayerManager", Vector3.zero, Quaternion.identity);
+        }
+
         public void CreateRoom(RoomButton b)
         {
             if (isMultiplayer.value)
