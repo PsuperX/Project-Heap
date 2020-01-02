@@ -8,7 +8,7 @@ namespace SA
 {
     public class MultiplayerLauncher : MonoBehaviourPunCallbacks
     {
-        delegate void OnSceneLoaded();
+        public delegate void OnSceneLoaded();
         bool isLoading;
 
         public static MultiplayerLauncher singleton;
@@ -26,7 +26,10 @@ namespace SA
         private void Awake()
         {
             if (!singleton)
+            {
                 singleton = this;
+                DontDestroyOnLoad(this.gameObject);
+            }
             else
                 Destroy(this.gameObject);
         }
@@ -34,6 +37,7 @@ namespace SA
         private void Start()
         {
             isConnected.value = false;
+            Debug.Log("Connecting to master...");
             ConnectToServer();
         }
 
@@ -75,7 +79,7 @@ namespace SA
             r.roomName = PhotonNetwork.CurrentRoom.Name;
 
             GameManagers.GetResourcesManager().curRoom.value = r;
-            Debug.Log("Room " + r.roomName + " Created Successfully");
+            Debug.Log("Room " + r.roomName + " created Successfully");
         }
 
         /// <summary>
@@ -133,15 +137,27 @@ namespace SA
             StartCoroutine(LoadScene("MainMenu", OnMainMenu));
         }
 
-        public void LoadCurrentRoom()
+        public void LoadCurrentRoom() // Its called by an event
+        {
+            if (isConnected.value)
+            {
+                MultiplayerManager.singleton.BroadcastSceneChange();
+            }
+            else
+            {
+                // Run current scene without callback
+                LoadCurrentSceneActual();
+            }
+        }
+
+        public void LoadCurrentSceneActual(OnSceneLoaded callback = null)
         {
             Room r = GameManagers.GetResourcesManager().curRoom.value;
-
             if (!isLoading)
             {
                 isLoading = true;
                 Debug.Log("Loading scene: " + r.sceneName);
-                StartCoroutine(LoadScene(r.sceneName));
+                StartCoroutine(LoadScene(r.sceneName, callback));
             }
         }
 

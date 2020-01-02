@@ -3,11 +3,17 @@ using UnityEngine;
 
 namespace SA
 {
-    public class MultiplayerReferences : MonoBehaviour
+    public class MultiplayerReferences
     {
         List<PlayerHolder> players = new List<PlayerHolder>();
 
         public PlayerHolder localPlayer;
+        public Transform referencesParent;
+
+        public MultiplayerReferences()
+        {
+            referencesParent = new GameObject("References").transform;
+        }
 
         public int GetPlayerCount()
         {

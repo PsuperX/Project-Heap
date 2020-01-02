@@ -9,7 +9,7 @@ namespace SA
         public int photonID;
         public bool isLocal;
 
-        public void OnPhotonInstantiate(PhotonMessageInfo info)
+        public void OnPhotonInstantiate(PhotonMessageInfo info) // Interface
         {
             MultiplayerManager mm = MultiplayerManager.singleton;
 
@@ -19,6 +19,12 @@ namespace SA
             isLocal = photonView.IsMine;
 
             mm.AddNewPlayer(this);
+        }
+
+        public void InstanciateController(int spawnIndex)
+        {
+            GameObject inputHandler = Instantiate(Resources.Load("InputHandler")) as GameObject;
+            PhotonNetwork.Instantiate("MultiplayerController", Vector3.zero, Quaternion.identity);
         }
     }
 }
