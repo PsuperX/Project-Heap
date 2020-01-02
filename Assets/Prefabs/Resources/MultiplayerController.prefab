@@ -11,10 +11,9 @@ GameObject:
   - component: {fileID: 7642100766455758519}
   - component: {fileID: 7642100766455758516}
   - component: {fileID: 7642100766455758517}
+  - component: {fileID: 5291844591473324744}
   - component: {fileID: 7642100766455758514}
-  - component: {fileID: 7642100766455758515}
-  - component: {fileID: 7642100766455758518}
-  - component: {fileID: 7555849953387725760}
+  - component: {fileID: 964379687205801928}
   m_Layer: 9
   m_Name: MultiplayerController
   m_TagString: Untagged
@@ -67,6 +66,22 @@ CapsuleCollider:
   m_Height: 1.8
   m_Direction: 1
   m_Center: {x: 0, y: 0.9, z: 0}
+--- !u!114 &5291844591473324744
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7642100766455758512}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 832de81217af5fb409ba12aedf843032, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  local: {fileID: 11400000, guid: 8c03a4e76ac97114bae2e130b66ade34, type: 2}
+  initLocalPlayer: {fileID: 11400000, guid: 10d0f3723f8da1244a46388c2a554b2f, type: 2}
+  client: {fileID: 11400000, guid: 5906f6481fd65864eb673f809af02088, type: 2}
+  initClientPlayer: {fileID: 11400000, guid: 0ab0aa5192d49064295227e89d52389a, type: 2}
 --- !u!114 &7642100766455758514
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -74,7 +89,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7642100766455758512}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b3e08173336c77d4bbf8356471f54b2a, type: 3}
   m_Name: 
@@ -95,7 +110,7 @@ MonoBehaviour:
   isCrouching: 0
   isReloading: 0
   isVaulting: 0
-  currentState: {fileID: 11400000, guid: 8c03a4e76ac97114bae2e130b66ade34, type: 2}
+  currentState: {fileID: 0}
   anim: {fileID: 0}
   delta: 0
   mTransform: {fileID: 0}
@@ -104,7 +119,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   animHook: {fileID: 0}
-  initActionsBatch: {fileID: 11400000, guid: b3ace2bceccda32449abe3e572c8237a, type: 2}
   vaultData:
     startPosition: {x: 0, y: 0, z: 0}
     endingPosition: {x: 0, y: 0, z: 0}
@@ -113,33 +127,7 @@ MonoBehaviour:
     vaultT: 0
     isInit: 0
   ballisticsAction: {fileID: 11400000, guid: d6e2653347cfb2243a1e7a613fde7273, type: 2}
---- !u!114 &7642100766455758515
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7642100766455758512}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 20dedf0a914735d4c886b31d19494c22, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  transformVariable: {fileID: 11400000, guid: cfc8f1e311c2c854ab9455e4a5934b46, type: 2}
---- !u!114 &7642100766455758518
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7642100766455758512}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 558cc97afb05dec43acb0123e54bbefe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  targetVariable: {fileID: 11400000, guid: b03dd0e6b749c5140a7f56b8bb2b81b9, type: 2}
---- !u!114 &7555849953387725760
+--- !u!114 &964379687205801928
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -154,10 +142,10 @@ MonoBehaviour:
   ObservedComponentsFoldoutOpen: 1
   Group: 0
   prefixField: -1
-  Synchronization: 0
+  Synchronization: 3
   OwnershipTransfer: 0
   ObservedComponents:
-  - {fileID: 0}
+  - {fileID: 5291844591473324744}
   viewIdField: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0

@@ -52,8 +52,6 @@ namespace SA
         [HideInInspector]
         public AnimatorHook animHook;
 
-        public StateActions initActionsBatch;
-
         [Header("Vaulting Options")]
         public VaultData vaultData;
         public AnimHashes hashes;
@@ -63,17 +61,6 @@ namespace SA
 
         private void Start()
         {
-            mTransform = this.transform;
-
-            rigid = GetComponent<Rigidbody>();
-            rigid.drag = 4;
-            rigid.angularDrag = 999;
-            rigid.constraints = RigidbodyConstraints.FreezeRotation;
-
-            ignoreLayers = ~(1 << 9 | 1 << 3);
-            anim = GetComponentInChildren<Animator>();
-
-            initActionsBatch.Execute(this);
             hashes = new AnimHashes();
         }
 
@@ -93,6 +80,16 @@ namespace SA
             {
                 currentState.Tick(this);
             }
+        }
+
+        public void SetCurrentState(State targetState)
+        {
+            if (currentState)
+                currentState.OnExit(this);
+
+            currentState = targetState;
+
+            currentState.OnEnter(this);
         }
 
         public void PlayAnimation(string targetAnim)

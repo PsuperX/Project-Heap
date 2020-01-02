@@ -10,8 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9b4c8d16f34f1fd46be2086b361b33c2, type: 3}
-  m_Name: InitControllerBatch
+  m_Name: InitPlayerController Batch
   m_EditorClassIdentifier: 
   inputs:
   - {fileID: 11400000, guid: 56a701d5d30741c41917a92cb14d8081, type: 2}
   - {fileID: 11400000, guid: f3f4509a00b5e2642b8a6eac9acc89a5, type: 2}
+  - {fileID: 11400000, guid: a317b0228fd044c42a1aa78a6d2dd200, type: 2}
+  - {fileID: 11400000, guid: bdea90d9ec3dd66429758ec087847c3b, type: 2}
