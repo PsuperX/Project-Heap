@@ -82,6 +82,11 @@ MonoBehaviour:
   initLocalPlayer: {fileID: 11400000, guid: 10d0f3723f8da1244a46388c2a554b2f, type: 2}
   client: {fileID: 11400000, guid: 5906f6481fd65864eb673f809af02088, type: 2}
   initClientPlayer: {fileID: 11400000, guid: 0ab0aa5192d49064295227e89d52389a, type: 2}
+  snapDistance: 4
+  snapAngle: 40
+  predictionSpeed: 10
+  movementThreshold: 0.05
+  angleThreshold: 0.05
 --- !u!114 &7642100766455758514
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -104,6 +109,7 @@ MonoBehaviour:
   inventory:
     weaponID: AK
     curWeapon: {fileID: 0}
+  isLocal: 0
   isAiming: 0
   isInteracting: 0
   isShooting: 0
@@ -127,6 +133,7 @@ MonoBehaviour:
     vaultT: 0
     isInit: 0
   ballisticsAction: {fileID: 11400000, guid: d6e2653347cfb2243a1e7a613fde7273, type: 2}
+  multiplayerListener: {fileID: 0}
 --- !u!114 &964379687205801928
 MonoBehaviour:
   m_ObjectHideFlags: 0

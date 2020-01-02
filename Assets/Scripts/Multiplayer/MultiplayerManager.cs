@@ -46,6 +46,7 @@ namespace SA
         void CreateController()
         {
             mRef.localPlayer.networkPrint.InstanciateController(mRef.localPlayer.spawnPosition);
+            Debug.Log("Created Controller");
         }
         #endregion
 

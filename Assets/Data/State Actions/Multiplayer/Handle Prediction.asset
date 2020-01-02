@@ -9,7 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: efebb277001f8424084a480f16b0ecec, type: 3}
-  m_Name: Movement Animations
+  m_Script: {fileID: 11500000, guid: 72d3d61d36741904c920e9c90564b555, type: 3}
+  m_Name: Handle Prediction
   m_EditorClassIdentifier: 
-  floatName: vertical

@@ -19,6 +19,7 @@ namespace SA
             public Vector3 aimPosition;
         }
 
+        public bool isLocal;
         public bool isAiming;
         public bool isInteracting;
         public bool isShooting;
@@ -58,6 +59,8 @@ namespace SA
 
         [Header("Ballistics")]
         public Ballistics ballisticsAction;
+
+        public MultiplayerListener multiplayerListener;
 
         private void Start()
         {
