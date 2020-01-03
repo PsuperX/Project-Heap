@@ -65,11 +65,11 @@ namespace SA
         Vector3 lastDirection;
         Vector3 targetAimPosition;
 
-        [SerializeField] float snapDistance = 4;
-        [SerializeField] float snapAngle = 40;
-        [SerializeField] float predictionSpeed = 10;
-        [SerializeField] float movementThreshold = .05f;
-        [SerializeField] float angleThreshold = .05f;
+        [SerializeField] readonly float snapDistance = 4;
+        [SerializeField] readonly float snapAngle = 40;
+        [SerializeField] readonly float predictionSpeed = 10;
+        [SerializeField] readonly float movementThreshold = .05f;
+        [SerializeField] readonly float angleThreshold = .05f;
 
         public void Prediction()
         {

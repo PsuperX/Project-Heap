@@ -1,6 +1,7 @@
 ﻿using Photon.Pun;
 using Photon.Realtime;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -21,6 +22,7 @@ namespace SA
         public SO.BoolVariable isConnected;
         public SO.BoolVariable isMultiplayer;
 
+        List<RoomInfo> curRoomsList;
 
         #region Init
         private void Awake()
@@ -92,9 +94,38 @@ namespace SA
 
             InstanciateMultiplayerManager();
         }
+
+        public override void OnJoinedLobby()
+        {
+            Debug.Log("Joined Lobby");
+            StartCoroutine(RoomCheck());
+        }
+
+        IEnumerator RoomCheck()
+        {
+            yield return new WaitForSeconds(3);
+            MatchMakingManager m = MatchMakingManager.singleton;
+
+            Debug.Log("Found " + curRoomsList.Count + " rooms");
+            for (int i = 0; i < curRoomsList.Count; i++)
+            {
+                m.AddMatch();
+            }
+        }
+
+        public override void OnRoomListUpdate(List<RoomInfo> roomList)
+        {
+            Debug.Log("Lobby Update Received");
+            curRoomsList = roomList;
+        }
         #endregion
 
         #region Manager Methods
+        public void JoinLobby() // Its called by an event
+        {
+            PhotonNetwork.JoinLobby(TypedLobby.Default);
+        }
+
         void InstanciateMultiplayerManager()
         {
             PhotonNetwork.Instantiate("MultiplayerManager", Vector3.zero, Quaternion.identity);
