@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Photon.Realtime;
+using UnityEngine;
 
 namespace SA
 {
@@ -7,6 +8,8 @@ namespace SA
         public bool isRoomCreated;
         public Room Room;
         public string scene = "Testing Site";
+        public RoomInfo roomInfo;
+        public bool isValid;
 
         public void OnClick()
         {

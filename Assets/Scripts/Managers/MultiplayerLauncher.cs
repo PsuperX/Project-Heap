@@ -10,7 +10,9 @@ namespace SA
     public class MultiplayerLauncher : MonoBehaviourPunCallbacks
     {
         public delegate void OnSceneLoaded();
+
         bool isLoading;
+        bool isInGame;
 
         public static MultiplayerLauncher singleton;
 
@@ -21,8 +23,6 @@ namespace SA
         public SO.GameEvent onJoinedRoom;
         public SO.BoolVariable isConnected;
         public SO.BoolVariable isMultiplayer;
-
-        List<RoomInfo> curRoomsList;
 
         #region Init
         private void Awake()
@@ -74,11 +74,13 @@ namespace SA
         /// </summary>
         public override void OnCreatedRoom()
         {
-            Room r = ScriptableObject.CreateInstance<Room>();
-
             PhotonNetwork.CurrentRoom.CustomProperties.TryGetValue("scene", out object sceneName);
-            r.sceneName = (string)sceneName;
-            r.roomName = PhotonNetwork.CurrentRoom.Name;
+
+            Room r = new Room
+            {
+                sceneName = (string)sceneName,
+                roomName = PhotonNetwork.CurrentRoom.Name
+            };
 
             GameManagers.GetResourcesManager().curRoom.value = r;
             Debug.Log("Room " + r.roomName + " created Successfully");
@@ -98,25 +100,24 @@ namespace SA
         public override void OnJoinedLobby()
         {
             Debug.Log("Joined Lobby");
-            StartCoroutine(RoomCheck());
         }
 
-        IEnumerator RoomCheck()
+        void RoomCheck(List<RoomInfo> roomList)
         {
-            yield return new WaitForSeconds(3);
-            MatchMakingManager m = MatchMakingManager.singleton;
-
-            Debug.Log("Found " + curRoomsList.Count + " rooms");
-            for (int i = 0; i < curRoomsList.Count; i++)
+            if (!isInGame) // probably unnecessary
             {
-                m.AddMatch();
+                MatchMakingManager m = MatchMakingManager.singleton;
+
+                Debug.Log("Found " + roomList.Count + " rooms");
+                m.AddMatches(roomList.ToArray());
+                // Call the listUpdate ...?
             }
         }
 
         public override void OnRoomListUpdate(List<RoomInfo> roomList)
         {
             Debug.Log("Lobby Update Received");
-            curRoomsList = roomList;
+            RoomCheck(roomList);
         }
         #endregion
 
@@ -128,11 +129,13 @@ namespace SA
 
         void InstanciateMultiplayerManager()
         {
-            PhotonNetwork.Instantiate("MultiplayerManager", Vector3.zero, Quaternion.identity);
+            if (PhotonNetwork.IsMasterClient)
+                PhotonNetwork.Instantiate("MultiplayerManager", Vector3.zero, Quaternion.identity);
         }
 
         public void CreateRoom(RoomButton b)
         {
+            Debug.Log("Creating Room");
             if (isMultiplayer.value)
             {
                 if (!isConnected.value)
@@ -148,19 +151,32 @@ namespace SA
 
                     RoomOptions roomOptions = new RoomOptions
                     {
-                        MaxPlayers = 4,
-                        CustomRoomProperties = properties
+                        MaxPlayers = 4
                     };
+
+                    roomOptions.CustomRoomPropertiesForLobby = new string[] { "scene" };
+                    roomOptions.CustomRoomProperties = properties;
 
                     PhotonNetwork.CreateRoom(null, roomOptions, TypedLobby.Default);
                 }
             }
             else // is playing solo
             {
-                Room r = ScriptableObject.CreateInstance<Room>();
-                r.sceneName = b.scene;
+                Room r = new Room
+                {
+                    sceneName = b.scene
+                };
                 GameManagers.GetResourcesManager().curRoom.Set(r);
             }
+
+            isInGame = true;
+        }
+
+        public void JoinRoom(RoomInfo info)
+        {
+            Debug.Log("Joining Room");
+            PhotonNetwork.JoinRoom(info.Name);
+            isInGame = true;
         }
 
         void LoadMainMenu()

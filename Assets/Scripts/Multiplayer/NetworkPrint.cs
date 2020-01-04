@@ -15,7 +15,6 @@ namespace SA
 
             // Not sure if this is the right ID
             photonID = photonView.OwnerActorNr;
-
             isLocal = photonView.IsMine;
 
             mm.AddNewPlayer(this);

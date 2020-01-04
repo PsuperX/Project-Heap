@@ -8,7 +8,7 @@ namespace SA
         public Room value;
         public RoomButtonVariable roomButtonVar;
 
-        public void JoinGame()
+        public void JoinGame() // ITs called by a UI Button
         {
             if (!roomButtonVar.value)
                 return;
@@ -26,6 +26,7 @@ namespace SA
             if (b.isRoomCreated)
             {
                 Set(b.Room);
+                MultiplayerLauncher.singleton.JoinRoom(b.roomInfo);
             }
             else
             {

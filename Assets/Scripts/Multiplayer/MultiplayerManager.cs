@@ -16,8 +16,7 @@ namespace SA
 
             mRef = new MultiplayerReferences();
 
-            if (PhotonNetwork.IsMasterClient)
-                InstanciateNetworkPrint();
+            InstanciateNetworkPrint();
         }
 
         void InstanciateNetworkPrint()
