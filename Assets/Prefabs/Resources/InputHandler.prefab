@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5420750843407710974}
   - component: {fileID: 5420750843407710849}
   m_Layer: 0
-  m_Name: Input Handler
+  m_Name: InputHandler
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -45,5 +45,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fixedUpdateActions: []
   updateActions:
+  - {fileID: 11400000, guid: 627f40aa537a7d749ba7166faf7de78b, type: 2}
   - {fileID: 11400000, guid: 52add92b8a17be640a4fa99768b270e2, type: 2}
   - {fileID: 11400000, guid: 74ead047aad3d2e46a6c7fa9477d189c, type: 2}

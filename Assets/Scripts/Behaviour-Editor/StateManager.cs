@@ -26,6 +26,7 @@ namespace SA
         public bool isCrouching;
         public bool isReloading;
         public bool isVaulting;
+        public bool isGrounded;
 
         public void SetCrouching()
         {
@@ -62,8 +63,17 @@ namespace SA
 
         public MultiplayerListener multiplayerListener;
 
+        public bool isOfflineController;
+        public StateActions offlineActions;
+
         private void Start()
         {
+            mTransform = transform;
+            rigid = GetComponent<Rigidbody>();
+
+            if (isOfflineController)
+                offlineActions.Execute(this);
+
             hashes = new AnimHashes();
         }
 

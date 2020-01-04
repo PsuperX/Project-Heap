@@ -17,6 +17,8 @@ namespace SA
         public float maxClamp = 35;
         public RotateAxis targetAxis;
 
+        public SO.FloatVariable delta;
+
         public enum RotateAxis
         {
             x, y, z
@@ -24,11 +26,16 @@ namespace SA
 
         public override void Execute()
         {
-            if (!negative)
-                angle += targetInput.value * speed;
-            else
-                angle -= targetInput.value * speed;
+            float t = delta.value;
 
+            if (!negative)
+            {
+                angle = Mathf.Lerp(angle, angle + targetInput.value * speed, t);
+            }
+            else
+            {
+                angle = Mathf.Lerp(angle, angle - targetInput.value * speed, t);
+            }
             if (clamp)
             {
                 angle = Mathf.Clamp(angle, minClamp, maxClamp);
