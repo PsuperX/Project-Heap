@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: Move Forward
   m_EditorClassIdentifier: 
   movementSpeed: 4
+  crouchSpeed: 2

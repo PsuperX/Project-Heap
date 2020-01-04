@@ -4,7 +4,9 @@ namespace SA
 {
     public class AnimHashes
     {
-        public int isInteracting = Animator.StringToHash("isInteracting");
-        public int vaultWalk = Animator.StringToHash("Vault Walk");
+        public readonly int vertical = Animator.StringToHash("vertical");
+        public readonly int horizontal = Animator.StringToHash("horizontal");
+        public readonly int isInteracting = Animator.StringToHash("isInteracting");
+        public readonly int vaultWalk = Animator.StringToHash("Vault Walk");
     }
 }

@@ -20,6 +20,9 @@ namespace SA
             states = GetComponent<StateManager>();
             mTransform = transform;
 
+            MultiplayerManager m = MultiplayerManager.singleton;
+            mTransform.parent = m.GetMRef().referencesParent;
+
             if (photonView.IsMine)
             {
                 states.isLocal = true;
@@ -56,6 +59,7 @@ namespace SA
                 states.isAiming = (bool)stream.ReceiveNext();
                 states.movementValues.horizontal = (float)stream.ReceiveNext();
                 states.movementValues.vertical = (float)stream.ReceiveNext();
+                states.movementValues.moveAmount = Mathf.Clamp01(Mathf.Abs(states.movementValues.horizontal) + Mathf.Abs(states.movementValues.vertical));
             }
         }
 

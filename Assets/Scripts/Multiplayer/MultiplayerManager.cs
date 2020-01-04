@@ -6,6 +6,10 @@ namespace SA
     public class MultiplayerManager : MonoBehaviourPun, IPunInstantiateMagicCallback
     {
         MultiplayerReferences mRef;
+        public MultiplayerReferences GetMRef()
+        {
+            return mRef;
+        }
 
         public static MultiplayerManager singleton;
 
@@ -15,6 +19,7 @@ namespace SA
             DontDestroyOnLoad(this.gameObject);
 
             mRef = new MultiplayerReferences();
+            DontDestroyOnLoad(mRef.referencesParent.gameObject);
 
             InstanciateNetworkPrint();
         }

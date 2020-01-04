@@ -109,6 +109,7 @@ namespace SA
                 sceneName = (string)sceneObj,
                 roomName = roomInfo.Name
             };
+            roomButton.Room = room;
 
             roomsDict.Add(roomInfo.Name, roomButton);
         }
