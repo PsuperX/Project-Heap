@@ -14,10 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetInput: {fileID: 11400000, guid: 319c457dd456ed144a8ef1542bdadf9a, type: 2}
   targetTransform: {fileID: 11400000, guid: 98fb2e90a26011f4e8b0f0752c345991, type: 2}
-  angle: 0
-  speed: 8
+  angle: -110.51928
+  speed: 500
   negative: 0
   clamp: 0
   minClamp: -35
   maxClamp: 35
   targetAxis: 1
+  delta: {fileID: 11400000, guid: bf7807e2de3c09d44ae1934bb665eb44, type: 2}

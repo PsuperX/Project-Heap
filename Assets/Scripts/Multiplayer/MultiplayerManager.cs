@@ -26,7 +26,11 @@ namespace SA
 
         void InstanciateNetworkPrint()
         {
-            GameObject go = PhotonNetwork.Instantiate("NetworkPrint", Vector3.zero, Quaternion.identity);
+            PlayerProfile profile = GameManagers.GetPlayerProfile();
+            object[] data = new object[1];
+            data[0] = profile.itemIds[0];
+
+            GameObject go = PhotonNetwork.Instantiate("NetworkPrint", Vector3.zero, Quaternion.identity, 0, data);
         }
 
         public void AddNewPlayer(NetworkPrint print)

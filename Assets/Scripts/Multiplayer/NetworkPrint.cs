@@ -1,5 +1,4 @@
 ﻿using Photon.Pun;
-using System;
 using UnityEngine;
 
 namespace SA
@@ -24,7 +23,7 @@ namespace SA
         {
             Debug.Log("Instanciate Controller");
             GameObject inputHandler = Instantiate(Resources.Load("InputHandler")) as GameObject;
-            PhotonNetwork.Instantiate("MultiplayerController", Vector3.zero, Quaternion.identity);
+            PhotonNetwork.Instantiate("MultiplayerController", Vector3.zero, Quaternion.identity, 0, photonView.InstantiationData);
         }
     }
 }

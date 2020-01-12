@@ -31,6 +31,11 @@ namespace SA
             }
             else
             {
+                object[] data = photonView.InstantiationData;
+                string weaponId = (string)data[0];
+
+                states.inventory.weaponID = weaponId;
+
                 states.isLocal = false;
                 states.SetCurrentState(client);
                 initClientPlayer.Execute(states);
@@ -40,7 +45,7 @@ namespace SA
 
         public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) // Interface
         {
-            if (stream.IsWriting)
+            if (stream.IsWriting) // is local
             {
                 stream.SendNext(mTransform.position);
                 stream.SendNext(mTransform.rotation);
@@ -49,7 +54,7 @@ namespace SA
                 stream.SendNext(states.movementValues.horizontal);
                 stream.SendNext(states.movementValues.vertical);
             }
-            else
+            else // is client
             {
                 Vector3 position = (Vector3)stream.ReceiveNext();
                 Quaternion rotation = (Quaternion)stream.ReceiveNext();
