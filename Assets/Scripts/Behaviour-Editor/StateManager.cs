@@ -28,6 +28,9 @@ namespace SA
         public bool isVaulting;
         public bool isGrounded;
 
+        public bool shootingFlag;
+        public bool reloadingFlag;
+
         public void SetCrouching()
         {
             isCrouching = !isCrouching;
