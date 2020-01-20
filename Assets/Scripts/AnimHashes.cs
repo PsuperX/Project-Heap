@@ -9,5 +9,6 @@ namespace SA
         public readonly int isInteracting = Animator.StringToHash("isInteracting");
         public readonly int isAiming = Animator.StringToHash("aiming");
         public readonly int vaultWalk = Animator.StringToHash("Vault Walk");
+        public readonly int isCrounching = Animator.StringToHash("crouch");
     }
 }

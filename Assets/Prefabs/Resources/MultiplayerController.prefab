@@ -82,6 +82,7 @@ MonoBehaviour:
   initLocalPlayer: {fileID: 11400000, guid: 10d0f3723f8da1244a46388c2a554b2f, type: 2}
   client: {fileID: 11400000, guid: 5906f6481fd65864eb673f809af02088, type: 2}
   initClientPlayer: {fileID: 11400000, guid: 0ab0aa5192d49064295227e89d52389a, type: 2}
+  vaultClient: {fileID: 11400000, guid: 1abad744806191347b932e676354bb1f, type: 2}
 --- !u!114 &7642100766455758514
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -114,6 +115,7 @@ MonoBehaviour:
   isGrounded: 0
   shootingFlag: 0
   reloadingFlag: 0
+  vaultingFlag: 0
   currentState: {fileID: 0}
   anim: {fileID: 0}
   delta: 0

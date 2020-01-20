@@ -30,6 +30,7 @@ namespace SA
 
         public bool shootingFlag;
         public bool reloadingFlag;
+        public bool vaultingFlag;
 
         public void SetCrouching()
         {
