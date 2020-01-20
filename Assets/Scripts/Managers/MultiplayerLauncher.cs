@@ -186,7 +186,7 @@ namespace SA
 
         public void LoadCurrentRoom() // Its called by an event
         {
-            if (isConnected.value)
+            if (isMultiplayer.value)
             {
                 MultiplayerManager.singleton.BroadcastSceneChange();
             }
