@@ -20,7 +20,7 @@ namespace SA
             return players.Count;
         }
 
-        public List<PlayerHolder> GetPlayer()
+        public List<PlayerHolder> GetPlayers()
         {
             return players;
         }
@@ -40,6 +40,18 @@ namespace SA
             };
             players.Add(playerHolder);
             return playerHolder;
+        }
+
+        public PlayerHolder GetPlayer(int photonID)
+        {
+            for (int i = 0; i < players.Count; i++)
+            {
+                if (players[i].photonID == photonID)
+                    return players[i];
+            }
+
+            Debug.Log("No player with photonID: " + photonID + " was found!");
+            return null;
         }
 
         // Check if there are players with the same id

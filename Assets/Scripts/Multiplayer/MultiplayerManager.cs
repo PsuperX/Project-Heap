@@ -13,6 +13,8 @@ namespace SA
 
         public static MultiplayerManager singleton;
 
+        public RayBallistics ballistics;
+
         public void OnPhotonInstantiate(PhotonMessageInfo info) // Interface
         {
             singleton = this;
@@ -56,6 +58,12 @@ namespace SA
             mRef.localPlayer.networkPrint.InstanciateController(mRef.localPlayer.spawnPosition);
             Debug.Log("Created Controller");
         }
+
+        public void BroadcastShootWeapon(StateManager states, Vector3 dir, Vector3 origin)
+        {
+            int photonId = states.photonID;
+            photonView.RPC("RPC_ShootWeapon", RpcTarget.Others, photonId, dir, origin);
+        }
         #endregion
 
         #region RPCs
@@ -73,6 +81,19 @@ namespace SA
             {
                 mRef.localPlayer.spawnPosition = spawnPosition;
             }
+        }
+
+        [PunRPC]
+        void RPC_ShootWeapon(int photonID, Vector3 dir, Vector3 origin)
+        {
+            if (photonID == mRef.localPlayer.photonID) // Probably not necessary
+                return;
+
+            PlayerHolder shooter = mRef.GetPlayer(photonID);
+            if (shooter == null)
+                return;
+
+            ballistics.ClientShoot(shooter.states, dir, origin);
         }
         #endregion
     }

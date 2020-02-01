@@ -26,6 +26,32 @@ namespace SA
                     hittable.OnHit(states, w, dir, hit.point, hit.normal);
                 }
             }
+
+            MultiplayerManager mm = MultiplayerManager.singleton;
+            if (mm != null) // MultiplayerManager is null if is not on multiplayer
+            {
+                mm.BroadcastShootWeapon(states, dir, origin);
+            }
+        }
+
+        public void ClientShoot(StateManager states, Vector3 dir, Vector3 origin)
+        {
+            Ray ray = new Ray(origin, dir);
+            if (Physics.Raycast(ray, out RaycastHit hit, 100))
+            {
+                IHittable hittable = hit.transform.GetComponentInParent<IHittable>();
+
+                if (hittable == null)
+                {
+                    GameObject hitParticle = GameManagers.GetObjectPooler().RequestObject("bullet_hit");
+                    hitParticle.transform.position = hit.point;
+                    hitParticle.transform.rotation = Quaternion.LookRotation(hit.normal);
+                }
+                else
+                {
+                    hittable.OnHit(states, states.inventory.curWeapon, dir, hit.point, hit.normal);
+                }
+            }
         }
     }
 }

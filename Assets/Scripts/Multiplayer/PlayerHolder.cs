@@ -6,5 +6,6 @@
         public string username;
         public int spawnPosition;
         public NetworkPrint networkPrint;
+        public StateManager states;
     }
 }

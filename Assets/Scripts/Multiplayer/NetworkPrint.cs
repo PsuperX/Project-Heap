@@ -12,7 +12,6 @@ namespace SA
         {
             MultiplayerManager mm = MultiplayerManager.singleton;
 
-            // Not sure if this is the right ID
             photonID = photonView.OwnerActorNr;
             isLocal = photonView.IsMine;
 
@@ -23,7 +22,12 @@ namespace SA
         {
             Debug.Log("Instanciate Controller");
             GameObject inputHandler = Instantiate(Resources.Load("InputHandler")) as GameObject;
-            PhotonNetwork.Instantiate("MultiplayerController", Vector3.zero, Quaternion.identity, 0, photonView.InstantiationData);
+
+            object[] data = new object[2];
+            data[0] = photonID;
+            data[1] = photonView.InstantiationData[0];
+
+            PhotonNetwork.Instantiate("MultiplayerController", Vector3.zero, Quaternion.identity, 0, data);
         }
     }
 }
