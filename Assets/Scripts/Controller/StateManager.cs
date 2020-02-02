@@ -7,6 +7,7 @@ namespace SA
         public int photonID;
 
         public MovementValues movementValues;
+        public PlayerStats stats;
         public Inventory inventory;
 
         [System.Serializable]
@@ -33,6 +34,7 @@ namespace SA
         public bool shootingFlag;
         public bool reloadingFlag;
         public bool vaultingFlag;
+        public bool healthChangedFlag;
 
         public void SetCrouching()
         {
@@ -118,7 +120,14 @@ namespace SA
 
         public void OnHit(StateManager shooter, Weapon w, Vector3 dir, Vector3 pos, Vector3 normal)
         {
+            stats.health -= w.ammoType.damageValue;
+            if (stats.health <= 0)
+            {
+                stats.health = 0;
+                // Raise event for death
+            }
 
+            healthChangedFlag = true;
         }
     }
 }

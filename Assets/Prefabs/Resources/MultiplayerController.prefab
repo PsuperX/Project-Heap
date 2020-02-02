@@ -103,6 +103,8 @@ MonoBehaviour:
     moveDirection: {x: 0, y: 0, z: 0}
     lookDirection: {x: 0, y: 0, z: 0}
     aimPosition: {x: 0, y: 0, z: 0}
+  stats:
+    health: 0
   inventory:
     weaponID: AK
     curWeapon: {fileID: 0}
@@ -117,6 +119,7 @@ MonoBehaviour:
   shootingFlag: 0
   reloadingFlag: 0
   vaultingFlag: 0
+  healthChangedFlag: 0
   currentState: {fileID: 0}
   anim: {fileID: 0}
   delta: 0
@@ -152,7 +155,7 @@ MonoBehaviour:
   ObservedComponentsFoldoutOpen: 1
   Group: 0
   prefixField: -1
-  Synchronization: 2
+  Synchronization: 3
   OwnershipTransfer: 0
   ObservedComponents:
   - {fileID: 5291844591473324744}

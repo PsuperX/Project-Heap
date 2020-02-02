@@ -78,6 +78,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3e08173336c77d4bbf8356471f54b2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  photonID: 0
   movementValues:
     horizontal: 0
     vertical: 0
@@ -85,6 +86,8 @@ MonoBehaviour:
     moveDirection: {x: 0, y: 0, z: 0}
     lookDirection: {x: 0, y: 0, z: 0}
     aimPosition: {x: 0, y: 0, z: 0}
+  stats:
+    health: 100
   inventory:
     weaponID: AK
     curWeapon: {fileID: 0}
@@ -96,6 +99,10 @@ MonoBehaviour:
   isReloading: 0
   isVaulting: 0
   isGrounded: 0
+  shootingFlag: 0
+  reloadingFlag: 0
+  vaultingFlag: 0
+  healthChangedFlag: 1
   currentState: {fileID: 11400000, guid: 8c03a4e76ac97114bae2e130b66ade34, type: 2}
   anim: {fileID: 0}
   delta: 0
