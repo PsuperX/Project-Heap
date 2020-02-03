@@ -15,3 +15,4 @@ MonoBehaviour:
   targetTransform: {fileID: 11400000, guid: cfc8f1e311c2c854ab9455e4a5934b46, type: 2}
   currentTransform: {fileID: 11400000, guid: 98fb2e90a26011f4e8b0f0752c345991, type: 2}
   speed: 9
+  delta: {fileID: 11400000, guid: 0b36a4f0e68df7b49a3163c072934b54, type: 2}

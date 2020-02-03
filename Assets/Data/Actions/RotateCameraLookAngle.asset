@@ -21,4 +21,4 @@ MonoBehaviour:
   minClamp: -35
   maxClamp: 35
   targetAxis: 1
-  delta: {fileID: 11400000, guid: bf7807e2de3c09d44ae1934bb665eb44, type: 2}
+  delta: {fileID: 11400000, guid: 0b36a4f0e68df7b49a3163c072934b54, type: 2}

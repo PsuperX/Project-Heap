@@ -9,9 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bacbfa7dc0fe3734d8edab696da8df1d, type: 3}
-  m_Name: Move Forward
+  m_Script: {fileID: 11500000, guid: b035228e5f1598a4ab88ac95f7285de6, type: 3}
+  m_Name: Handle Cursor
   m_EditorClassIdentifier: 
-  frontRayOffset: 0.5
-  movementSpeed: 4
-  adaptSpeed: 10
+  lockMode: 1
+  isVisible: 0

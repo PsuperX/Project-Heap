@@ -43,7 +43,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4a5677ddadeae24d9960f43d46e0894, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fixedUpdateActions: []
+  fixedUpdateActions:
+  - {fileID: 11400000, guid: 37925f45afb899a48a8758897089460e, type: 2}
   updateActions:
   - {fileID: 11400000, guid: 627f40aa537a7d749ba7166faf7de78b, type: 2}
   - {fileID: 11400000, guid: 52add92b8a17be640a4fa99768b270e2, type: 2}

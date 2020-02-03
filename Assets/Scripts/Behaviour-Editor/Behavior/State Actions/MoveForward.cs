@@ -7,6 +7,7 @@ namespace SA
     {
         public float frontRayOffset = .5f;
         public float movementSpeed = 4;
+        public float crouchSpeed = 2;
         public float adaptSpeed = 10;
 
         public override void Execute(StateManager states)
@@ -22,7 +23,7 @@ namespace SA
             }
 
             Vector3 currentVelocity = states.rigid.velocity;
-            Vector3 targetVelocity = states.mTransform.forward * states.movementValues.moveAmount * movementSpeed;
+            Vector3 targetVelocity = states.mTransform.forward * states.movementValues.moveAmount * ((states.isCrouching) ? crouchSpeed : movementSpeed);
 
             if (states.isGrounded)
             {
@@ -34,7 +35,7 @@ namespace SA
                     states.rigid.drag = 0;
                     if (Mathf.Abs(frontY) > .02f)
                     {
-                        targetVelocity.y = ((frontY > 0) ? frontY + .2f : frontY) * movementSpeed;
+                        targetVelocity.y = ((frontY > 0) ? frontY + .2f : frontY) * ((states.isCrouching) ? crouchSpeed : movementSpeed);
                     }
                 }
                 else
@@ -58,20 +59,6 @@ namespace SA
 
             Debug.DrawRay(states.mTransform.position + Vector3.up * .2f, targetVelocity, Color.green, .01f, false);
             states.rigid.velocity = Vector3.Lerp(currentVelocity, targetVelocity, states.delta * adaptSpeed);
-
-            #region Junk
-            /*
-            if (states.movementValues.moveAmount > .1f)
-                states.rigid.drag = 0;
-            else
-                states.rigid.drag = 4;
-
-            float targetSpeed = states.isCrouching ? crouchSpeed : movementSpeed;
-
-            Vector3 velocity = states.mTransform.forward * states.movementValues.moveAmount * targetSpeed;
-            states.rigid.velocity = velocity;
-            */
-            #endregion
         }
     }
 }

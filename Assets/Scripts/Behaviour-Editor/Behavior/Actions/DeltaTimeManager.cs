@@ -6,10 +6,11 @@ namespace SA
     public class DeltaTimeManager : Action
     {
         public SO.FloatVariable variable;
+        public bool isFixed;
 
         public override void Execute()
         {
-            variable.value = Time.deltaTime;
+            variable.value = (isFixed) ? Time.fixedDeltaTime : Time.deltaTime;
         }
     }
 }
