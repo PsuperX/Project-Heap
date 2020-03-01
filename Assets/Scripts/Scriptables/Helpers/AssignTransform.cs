@@ -12,6 +12,5 @@ namespace SA
             transformVariable.value = this.transform;
             Destroy(this);
         }
-
     }
 }

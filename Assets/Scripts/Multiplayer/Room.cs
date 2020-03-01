@@ -1,9 +1,7 @@
-﻿using UnityEngine;
-
-namespace SA
+﻿namespace SA
 {
-    [CreateAssetMenu(menuName = "Room")]
-    public class Room : ScriptableObject
+    [System.Serializable]
+    public struct Room
     {
         public string sceneName;
         public string roomName;

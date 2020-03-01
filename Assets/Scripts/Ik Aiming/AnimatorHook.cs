@@ -168,7 +168,7 @@ namespace SA
             offsetPosition = Vector3.zero;
         }
 
-        public void RecoilActual()
+        void RecoilActual()
         {
             if (recoilIsInit)
             {

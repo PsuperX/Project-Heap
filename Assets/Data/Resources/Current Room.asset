@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04eda51cf4159b849abbe7c4450b585b, type: 3}
   m_Name: Current Room
   m_EditorClassIdentifier: 
-  value: {fileID: 11400000, guid: 4b60f9d73adb80a4d99c221327c1664f, type: 2}
+  value: {fileID: 0}
+  roomButtonVar: {fileID: 11400000, guid: bd47ceaf17a01db4798d7743c9e4a846, type: 2}
