@@ -35,7 +35,7 @@ namespace SA
                 firstHit.y -= origin1Offset;
                 Vector3 normalDir = -hit.normal;
 
-                Debug.DrawRay(origin2, direction * rayForwardDst);
+                Debug.DrawRay(origin2, direction * rayHigherForwardDst);
                 if (Physics.Raycast(origin2, direction, out hit, rayHigherForwardDst))
                 {
 
