@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace SA
 {
@@ -9,6 +10,9 @@ namespace SA
         public MovementValues movementValues;
         public PlayerStats stats;
         public Inventory inventory;
+
+        [HideInInspector] public List<Rigidbody> ragdollRBs = new List<Rigidbody>();
+        [HideInInspector] public List<Collider> ragdollCols = new List<Collider>();
 
         [System.Serializable]
         public struct MovementValues
@@ -120,6 +124,12 @@ namespace SA
 
         public void OnHit(StateManager shooter, Weapon w, Vector3 dir, Vector3 pos, Vector3 normal)
         {
+            // Spawn blood FX
+            GameObject hitParticle = GameManagers.GetObjectPooler().RequestObject("FX_BloodSplat_01");
+            Quaternion rot = Quaternion.LookRotation(normal);
+            hitParticle.transform.position = pos;
+            hitParticle.transform.rotation = rot;
+
             stats.health -= w.ammoType.damageValue;
             if (stats.health <= 0)
             {

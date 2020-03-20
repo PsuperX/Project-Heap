@@ -12,7 +12,7 @@ namespace SA
             Ray ray = new Ray(origin, dir);
 
             RaycastHit[] hits;
-            hits = Physics.RaycastAll(ray, 100, states.ignoreLayers);
+            hits = Physics.RaycastAll(ray, 100);
             if (hits == null) return;
             if (hits.Length == 0) return;
 
@@ -30,7 +30,7 @@ namespace SA
             else
             {
                 // Execute IHittable custom behaviour
-                isHittable.OnHit(states, w, dir, origin, closestHit.normal);
+                isHittable.OnHit(states, w, dir, closestHit.point, closestHit.normal);
             }
 
 
@@ -75,7 +75,7 @@ namespace SA
             Ray ray = new Ray(origin, dir);
 
             RaycastHit[] hits;
-            hits = Physics.RaycastAll(ray, 100, states.ignoreLayers);
+            hits = Physics.RaycastAll(ray, 100);
             if (hits == null) return;
             if (hits.Length == 0) return;
 
@@ -93,7 +93,7 @@ namespace SA
             else
             {
                 // Execute IHittable custom behaviour
-                isHittable.OnHit(states, states.inventory.curWeapon, dir, origin, closestHit.normal);
+                isHittable.OnHit(states, states.inventory.curWeapon, dir, closestHit.point, closestHit.normal);
             }
         }
     }

@@ -15,19 +15,19 @@ MonoBehaviour:
   pool:
   - prefab: {fileID: 1133313454119596, guid: 79927c6543a058b4383885fac101fe2e, type: 3}
     budget: 5
-    cur: 0
+    cur: 4
     createdObjects:
+    - {fileID: 0}
+    - {fileID: 0}
     - {fileID: 0}
     - {fileID: 0}
     - {fileID: 0}
     - {fileID: 0}
   - prefab: {fileID: 1126181125208960, guid: 432f6ddf810fdad4baa8f47fca7e7ad4, type: 3}
     budget: 5
-    cur: 2
-    createdObjects:
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
+    cur: 0
+    createdObjects: []
+  - prefab: {fileID: 1362418652685942, guid: b369efb4abe69e044890b664115fab9e, type: 3}
+    budget: 5
+    cur: 0
+    createdObjects: []

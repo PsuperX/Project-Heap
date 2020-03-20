@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45de488bdb80c694b989143c644758df, type: 3}
   m_Name: Rotate Based On Camera
   m_EditorClassIdentifier: 
-  speed: 8
+  speed: 20
