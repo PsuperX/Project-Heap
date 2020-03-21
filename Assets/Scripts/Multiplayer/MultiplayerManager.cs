@@ -1,4 +1,5 @@
 ﻿using Photon.Pun;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace SA
@@ -46,6 +47,24 @@ namespace SA
             }
         }
 
+        List<PlayerHolder> playersToRespawn = new List<PlayerHolder>();
+        private void Update()
+        {
+            float deltaTime = Time.deltaTime;
+
+            for (int i = playersToRespawn.Count - 1; i >= 0; i--)
+            {
+                playersToRespawn[i].spawnTimer += deltaTime;
+
+                if (playersToRespawn[i].spawnTimer > 5)
+                {
+                    playersToRespawn[i].spawnTimer = 0;
+                    photonView.RPC("RPC_SpawnPlayer", RpcTarget.All, playersToRespawn[i].photonID);
+                    playersToRespawn.RemoveAt(i);
+                }
+            }
+        }
+
         #region MyCalls
         public void BroadcastSceneChange()
         {
@@ -63,6 +82,11 @@ namespace SA
         {
             int photonId = states.photonID;
             photonView.RPC("RPC_ShootWeapon", RpcTarget.Others, photonId, dir, origin);
+        }
+
+        public void BroadcastKillPlayer(int photonID, int shooter)
+        {
+            photonView.RPC("RPC_ReceiveKillPlayer", RpcTarget.MasterClient, photonID, shooter);
         }
         #endregion
 
@@ -94,6 +118,29 @@ namespace SA
                 return;
 
             ballistics.ClientShoot(shooter.states, dir, origin);
+        }
+
+        [PunRPC]
+        void RPC_SpawnPlayer(int photonID)
+        {
+            PlayerHolder player = mRef.GetPlayer(photonID);
+            if (player.states)
+                player.states.SpawnPlayer();
+        }
+
+        [PunRPC]
+        void RPC_ReceiveKillPlayer(int photonID, int shooter) // Happens on MasterClient
+        {
+            photonView.RPC("RPC_KillPlayer", RpcTarget.MasterClient, photonID, shooter);
+            playersToRespawn.Add(mRef.GetPlayer(photonID));
+        }
+
+        [PunRPC]
+        void RPC_KillPlayer(int photonID, int shooter)
+        {
+            PlayerHolder player = mRef.GetPlayer(photonID);
+            if (player.states)
+                player.states.KillPlayer();
         }
         #endregion
     }

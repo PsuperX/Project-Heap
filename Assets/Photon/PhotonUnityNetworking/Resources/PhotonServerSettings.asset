@@ -38,5 +38,8 @@ MonoBehaviour:
   - RPC_SceneChange
   - RPC_SetSpawnPositionForPlayer
   - RPC_ShootWeapon
+  - RPC_KillPlayer
+  - RPC_ReceiveKillPlayer
+  - RPC_SpawnPlayer
   DisableAutoOpenWizard: 1
   ShowSettings: 0

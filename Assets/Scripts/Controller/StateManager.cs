@@ -34,6 +34,7 @@ namespace SA
         public bool isReloading;
         public bool isVaulting;
         public bool isGrounded;
+        public bool isDead;
 
         public bool shootingFlag;
         public bool reloadingFlag;
@@ -91,7 +92,8 @@ namespace SA
 
         private void FixedUpdate()
         {
-            delta = Time.deltaTime;
+            if (isDead)
+                return;
 
             if (currentState != null)
             {
@@ -101,6 +103,11 @@ namespace SA
 
         private void Update()
         {
+            if (isDead)
+                return;
+
+            delta = Time.deltaTime;
+
             if (currentState != null)
             {
                 currentState.Tick(this);
@@ -117,9 +124,21 @@ namespace SA
             currentState.OnEnter(this);
         }
 
-        public void PlayAnimation(string targetAnim)
+        public void PlayAnimation(string targetAnim, float fadeTime = .2f)
         {
-            anim.CrossFade(targetAnim, .2f);
+            anim.CrossFade(targetAnim, fadeTime);
+        }
+
+        public void SpawnPlayer()
+        {
+            if (isLocal)
+            {
+                healthChangedFlag = true;
+                stats.health = 100;
+            }
+
+            PlayAnimation("locomotion");
+            isDead = false;
         }
 
         public void OnHit(StateManager shooter, Weapon w, Vector3 dir, Vector3 pos, Vector3 normal)
@@ -135,9 +154,21 @@ namespace SA
             {
                 stats.health = 0;
                 // Raise event for death
+                if (!isDead)
+                {
+                    isDead = true;
+                    MultiplayerManager.singleton.BroadcastKillPlayer(photonID, shooter.photonID);
+                }
             }
 
             healthChangedFlag = true;
         }
+
+        public void KillPlayer()
+        {
+            isDead = true;
+            PlayAnimation("death", .4f);
+        }
+
     }
 }

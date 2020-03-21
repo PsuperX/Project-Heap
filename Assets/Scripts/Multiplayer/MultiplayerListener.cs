@@ -49,6 +49,11 @@ namespace SA
 
         public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) // Interface
         {
+            if (states.isDead)
+            {
+                return;
+            }
+
             if (stream.IsWriting) // is local
             {
                 stream.SendNext(mTransform.position);
