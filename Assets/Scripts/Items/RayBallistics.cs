@@ -8,7 +8,7 @@ namespace SA
         public override void Execute(StateManager states, Weapon w)
         {
             Vector3 origin = w.runtimeW.modelInstance.transform.position;
-            Vector3 dir = states.movementValues.aimPosition;
+            Vector3 dir = states.movementValues.aimPosition - origin;
             Ray ray = new Ray(origin, dir);
 
             RaycastHit[] hits;
@@ -52,20 +52,20 @@ namespace SA
                 if (tempDst < minDst)
                 {
                     // Found a closer one
-                    StateManager states = hits[i].transform.GetComponentInParent<StateManager>();
 
                     // Filter the shooter
+                    StateManager states = hits[i].transform.GetComponentInParent<StateManager>();
                     if (states != null)
                     {
                         if (states.photonID == shooterID)
                             continue;
                     }
-
+                    
                     minDst = tempDst;
                     closestIndex = i;
                 }
             }
-
+            
             return hits[closestIndex];
         }
 

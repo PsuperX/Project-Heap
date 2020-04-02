@@ -11,7 +11,7 @@ namespace SA
     {
         public delegate void OnSceneLoaded();
 
-        bool isLoading;
+        [HideInInspector] public bool isLoading;
         bool isInGame;
 
         public static MultiplayerLauncher singleton;

@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: Move Forward
   m_EditorClassIdentifier: 
   frontRayOffset: 0.5
-  movementSpeed: 4
+  movementSpeed: 5
+  crouchSpeed: 2
   adaptSpeed: 10

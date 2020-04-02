@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: "7.62\xD739mm"
   m_EditorClassIdentifier: 
   carryingAmount: 5
+  damageValue: 20

@@ -59,23 +59,50 @@ namespace SA
                 if (playersToRespawn[i].spawnTimer > 5)
                 {
                     playersToRespawn[i].spawnTimer = 0;
-                    photonView.RPC("RPC_SpawnPlayer", RpcTarget.All, playersToRespawn[i].photonID);
+                    int ran = Random.Range(0, mRef.spawnPositions.Length);
+                    Vector3 pos = mRef.spawnPositions[ran].transform.position;
+                    Quaternion rot = mRef.spawnPositions[ran].transform.rotation;
+                    photonView.RPC("RPC_SpawnPlayer", RpcTarget.All, playersToRespawn[i].photonID, pos, rot);
                     playersToRespawn.RemoveAt(i);
                 }
             }
         }
 
         #region MyCalls
+        public void FindSpawnPositionOnLevel()
+        {
+            if (PhotonNetwork.IsMasterClient)
+            {
+                mRef.spawnPositions = FindObjectsOfType<SpawnPosition>();
+                AssignSpawnPositions();
+            }
+        }
+
+        void AssignSpawnPositions()
+        {
+            List<PlayerHolder> players = mRef.GetPlayers();
+
+            for (int i = 0; i < players.Count; i++)
+            {
+                int index = i % mRef.spawnPositions.Length;
+                SpawnPosition p = mRef.spawnPositions[i];
+                photonView.RPC("RPC_BroadcastCreateControllers", RpcTarget.All,
+                    players[i].photonID, p.transform.position, p.transform.rotation);
+            }
+        }
+
         public void BroadcastSceneChange()
         {
             if (PhotonNetwork.IsMasterClient)
                 photonView.RPC("RPC_SceneChange", RpcTarget.All);
         }
 
-        void CreateController()
+        void LevelLoadedCallback() // After scene was loaded
         {
-            mRef.localPlayer.networkPrint.InstanciateController(mRef.localPlayer.spawnPosition);
-            Debug.Log("Created Controller");
+            Debug.Log("Level Loaded");
+
+            if (PhotonNetwork.IsMasterClient)
+                FindSpawnPositionOnLevel();
         }
 
         public void BroadcastShootWeapon(StateManager states, Vector3 dir, Vector3 origin)
@@ -92,19 +119,20 @@ namespace SA
 
         #region RPCs
         [PunRPC]
-        void RPC_SceneChange()
-        {
-            // TODO: set spawn positions from the master
-            MultiplayerLauncher.singleton.LoadCurrentSceneActual(CreateController);
-        }
-
-        [PunRPC]
-        void RPC_SetSpawnPositionForPlayer(int photonID, int spawnPosition)
+        void RPC_BroadcastCreateControllers(int photonID, Vector3 pos, Quaternion rot)
         {
             if (photonID == mRef.localPlayer.photonID)
             {
-                mRef.localPlayer.spawnPosition = spawnPosition;
+                while (MultiplayerLauncher.singleton.isLoading) { }
+                mRef.localPlayer.networkPrint.InstanciateController(pos, rot);
             }
+        }
+
+        [PunRPC]
+        void RPC_SceneChange()
+        {
+            // TODO: set spawn positions from the master
+            MultiplayerLauncher.singleton.LoadCurrentSceneActual(LevelLoadedCallback);
         }
 
         [PunRPC]
@@ -121,17 +149,17 @@ namespace SA
         }
 
         [PunRPC]
-        void RPC_SpawnPlayer(int photonID)
+        void RPC_SpawnPlayer(int photonID, Vector3 targetPos, Quaternion targetRot)
         {
             PlayerHolder player = mRef.GetPlayer(photonID);
             if (player.states)
-                player.states.SpawnPlayer();
+                player.states.SpawnPlayer(targetPos, targetRot);
         }
 
         [PunRPC]
         void RPC_ReceiveKillPlayer(int photonID, int shooter) // Happens on MasterClient
         {
-            photonView.RPC("RPC_KillPlayer", RpcTarget.MasterClient, photonID, shooter);
+            photonView.RPC("RPC_KillPlayer", RpcTarget.All, photonID, shooter);
             playersToRespawn.Add(mRef.GetPlayer(photonID));
         }
 

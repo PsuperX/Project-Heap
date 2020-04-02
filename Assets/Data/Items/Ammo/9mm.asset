@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: 9mm
   m_EditorClassIdentifier: 
   carryingAmount: 5
+  damageValue: 20

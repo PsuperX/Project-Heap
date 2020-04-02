@@ -5,6 +5,7 @@ namespace SA
 {
     public class MultiplayerReferences
     {
+        public SpawnPosition[] spawnPositions;
         List<PlayerHolder> players = new List<PlayerHolder>();
 
         public PlayerHolder localPlayer;

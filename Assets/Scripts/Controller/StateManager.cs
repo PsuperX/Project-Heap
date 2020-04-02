@@ -83,6 +83,8 @@ namespace SA
         {
             mTransform = transform;
             rigid = GetComponent<Rigidbody>();
+            stats.health = 100;
+            healthChangedFlag = true;
 
             if (isOfflineController)
                 offlineActions.Execute(this);
@@ -129,15 +131,15 @@ namespace SA
             anim.CrossFade(targetAnim, fadeTime);
         }
 
-        public void SpawnPlayer()
+        public void SpawnPlayer(Vector3 spawnPos, Quaternion rot)
         {
-            if (isLocal)
-            {
-                healthChangedFlag = true;
-                stats.health = 100;
-            }
+            healthChangedFlag = true;
+            stats.health = 100;
 
-            PlayAnimation("locomotion");
+            mTransform.position = spawnPos;
+            mTransform.rotation = rot;
+
+            PlayAnimation("Empty Override");
             isDead = false;
         }
 
@@ -156,6 +158,7 @@ namespace SA
                 // Raise event for death
                 if (!isDead)
                 {
+                    Debug.Log("Dead");
                     isDead = true;
                     MultiplayerManager.singleton.BroadcastKillPlayer(photonID, shooter.photonID);
                 }
@@ -166,8 +169,9 @@ namespace SA
 
         public void KillPlayer()
         {
+            Debug.Log("Kill player");
             isDead = true;
-            PlayAnimation("death", .4f);
+            PlayAnimation("death" + Random.Range(1, 4), .4f);
         }
 
     }

@@ -3353,6 +3353,7 @@ MonoBehaviour:
   isReloading: 0
   isVaulting: 0
   isGrounded: 0
+  isDead: 0
   shootingFlag: 0
   reloadingFlag: 0
   vaultingFlag: 0
