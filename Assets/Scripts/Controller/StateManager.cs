@@ -151,25 +151,39 @@ namespace SA
             hitParticle.transform.position = pos;
             hitParticle.transform.rotation = rot;
 
-            stats.health -= w.ammoType.damageValue;
-            if (stats.health <= 0)
+            if (Photon.Pun.PhotonNetwork.IsMasterClient)
             {
-                stats.health = 0;
-                // Raise event for death
                 if (!isDead)
                 {
-                    Debug.Log("Dead");
-                    isDead = true;
-                    MultiplayerManager.singleton.BroadcastKillPlayer(photonID, shooter.photonID);
+                    stats.health -= w.ammoType.damageValue;
+                    MultiplayerManager mm = MultiplayerManager.singleton;
+                    mm.BroadcastPlayerHealth(photonID, stats.health,shooter.photonID);
+
+                    if(stats.health <= 0)
+                    {
+                        isDead = true;
+                    }
                 }
             }
 
-            healthChangedFlag = true;
+            //if (stats.health <= 0)
+            //{
+            //    stats.health = 0;
+            //    // Raise event for death
+            //    if (!isDead)
+            //    {
+            //        Debug.Log("Dead");
+            //        isDead = true;
+            //        MultiplayerManager.singleton.BroadcastKillPlayer(photonID, shooter.photonID);
+            //    }
+            //}
+
+            //healthChangedFlag = true;
         }
 
         public void KillPlayer()
         {
-            Debug.Log("Kill player");
+            //Debug.Log("Kill player");
             isDead = true;
             PlayAnimation("death" + Random.Range(1, 4), .4f);
         }

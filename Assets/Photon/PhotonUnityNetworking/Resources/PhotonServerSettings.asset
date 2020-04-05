@@ -42,5 +42,7 @@ MonoBehaviour:
   - RPC_ReceiveKillPlayer
   - RPC_SpawnPlayer
   - RPC_BroadcastCreateControllers
+  - RPC_BroadcastPlayerHealth
+  - RPC_SyncKillCount
   DisableAutoOpenWizard: 1
   ShowSettings: 0

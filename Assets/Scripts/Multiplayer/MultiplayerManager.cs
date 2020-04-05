@@ -58,11 +58,19 @@ namespace SA
 
                 if (playersToRespawn[i].spawnTimer > 5)
                 {
+                    // Reset player values
                     playersToRespawn[i].spawnTimer = 0;
+                    playersToRespawn[i].health = 100;
+
+                    // Get spawn position
                     int ran = Random.Range(0, mRef.spawnPositions.Length);
                     Vector3 pos = mRef.spawnPositions[ran].transform.position;
                     Quaternion rot = mRef.spawnPositions[ran].transform.rotation;
+
+                    // RPCs
+                    photonView.RPC("RPC_BroadcastPlayerHealth", RpcTarget.All, playersToRespawn[i].photonID, 100);
                     photonView.RPC("RPC_SpawnPlayer", RpcTarget.All, playersToRespawn[i].photonID, pos, rot);
+
                     playersToRespawn.RemoveAt(i);
                 }
             }
@@ -111,9 +119,31 @@ namespace SA
             photonView.RPC("RPC_ShootWeapon", RpcTarget.Others, photonId, dir, origin);
         }
 
-        public void BroadcastKillPlayer(int photonID, int shooter)
+        void BroadcastPlayerHitBy(int photonID, int shooterID)
         {
-            photonView.RPC("RPC_ReceiveKillPlayer", RpcTarget.MasterClient, photonID, shooter);
+            int killCount = ++mRef.GetPlayer(photonID).killCount;
+            photonView.RPC("RPC_SyncKillCount", RpcTarget.All, shooterID, killCount);
+
+            if(killCount >= 3)
+            {
+                Debug.Log("Got him!\nGame is over!!!");
+            }
+        }
+
+        public void BroadcastPlayerHealth(int photonID, int health, int shooterID)
+        {
+            if (health <= 0)
+            {
+                playersToRespawn.Add(mRef.GetPlayer(photonID));
+                BroadcastPlayerHitBy(photonID, shooterID);
+            }
+
+            photonView.RPC("RPC_BroadcastPlayerHealth", RpcTarget.All, photonID, health);
+        }
+
+        public void BroadcastKillPlayer(int photonID)
+        {
+            photonView.RPC("RPC_KillPlayer", RpcTarget.All, photonID);
         }
         #endregion
 
@@ -129,9 +159,33 @@ namespace SA
         }
 
         [PunRPC]
+        void RPC_SyncKillCount(int photonID,int killCount)
+        {
+            if(photonID == mRef.localPlayer.photonID)
+            {
+                mRef.localPlayer.killCount = killCount;
+                Debug.Log("New kill count: " + killCount);
+            }
+        }
+
+        [PunRPC]
+        void RPC_BroadcastPlayerHealth(int photonID, int health)
+        {
+            PlayerHolder player = mRef.GetPlayer(photonID);
+            player.health = health;
+
+            if (player == mRef.localPlayer)
+            {
+                if (player.health <= 0)
+                {
+                    BroadcastKillPlayer(photonID);
+                }
+            }
+        }
+
+        [PunRPC]
         void RPC_SceneChange()
         {
-            // TODO: set spawn positions from the master
             MultiplayerLauncher.singleton.LoadCurrentSceneActual(LevelLoadedCallback);
         }
 
@@ -157,14 +211,7 @@ namespace SA
         }
 
         [PunRPC]
-        void RPC_ReceiveKillPlayer(int photonID, int shooter) // Happens on MasterClient
-        {
-            photonView.RPC("RPC_KillPlayer", RpcTarget.All, photonID, shooter);
-            playersToRespawn.Add(mRef.GetPlayer(photonID));
-        }
-
-        [PunRPC]
-        void RPC_KillPlayer(int photonID, int shooter)
+        void RPC_KillPlayer(int photonID)
         {
             PlayerHolder player = mRef.GetPlayer(photonID);
             if (player.states)

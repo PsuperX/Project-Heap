@@ -37,7 +37,8 @@ namespace SA
             PlayerHolder playerHolder = new PlayerHolder
             {
                 photonID = print.photonID,
-                networkPrint = print
+                networkPrint = print,
+                health = 100
             };
             players.Add(playerHolder);
             return playerHolder;
