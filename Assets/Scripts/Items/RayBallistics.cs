@@ -16,21 +16,23 @@ namespace SA
             if (hits == null) return;
             if (hits.Length == 0) return;
 
-            RaycastHit closestHit = GetClosestHit(origin, hits, states.photonID);
-            IHittable isHittable = closestHit.transform.GetComponentInParent<IHittable>();
+            RaycastHit? closestHit = GetClosestHit(origin, hits, states.photonID);
+            if (!closestHit.HasValue)
+                return;
+            IHittable isHittable = closestHit.Value.transform.GetComponentInParent<IHittable>();
 
             if (isHittable == null)
             {
                 // Do default hit behaviour
                 GameObject hitParticle = GameManagers.GetObjectPooler().RequestObject("bullet_hit");
-                Quaternion rot = Quaternion.LookRotation(closestHit.normal);
-                hitParticle.transform.position = closestHit.point;
+                Quaternion rot = Quaternion.LookRotation(closestHit.Value.normal);
+                hitParticle.transform.position = closestHit.Value.point;
                 hitParticle.transform.rotation = rot;
             }
             else
             {
                 // Execute IHittable custom behaviour
-                isHittable.OnHit(states, w, dir, closestHit.point, closestHit.normal);
+                isHittable.OnHit(states, w, dir, closestHit.Value.point, closestHit.Value.normal);
             }
 
 
@@ -41,9 +43,9 @@ namespace SA
             }
         }
 
-        RaycastHit GetClosestHit(Vector3 origin, RaycastHit[] hits, int shooterID)
+        RaycastHit? GetClosestHit(Vector3 origin, RaycastHit[] hits, int shooterID)
         {
-            int closestIndex = 0;
+            int closestIndex = -1;
 
             float minDst = float.MaxValue;
             for (int i = 0; i < hits.Length; i++)
@@ -60,13 +62,16 @@ namespace SA
                         if (states.photonID == shooterID)
                             continue;
                     }
-                    
+
                     minDst = tempDst;
                     closestIndex = i;
                 }
             }
-            
-            return hits[closestIndex];
+
+            if (closestIndex > -1)
+                return hits[closestIndex];
+            else
+                return null;
         }
 
         public void ClientShoot(StateManager states, Vector3 dir, Vector3 origin)
@@ -79,21 +84,21 @@ namespace SA
             if (hits == null) return;
             if (hits.Length == 0) return;
 
-            RaycastHit closestHit = GetClosestHit(origin, hits, states.photonID);
-            IHittable isHittable = closestHit.transform.GetComponentInParent<IHittable>();
+            RaycastHit? closestHit = GetClosestHit(origin, hits, states.photonID);
+            IHittable isHittable = closestHit.Value.transform.GetComponentInParent<IHittable>();
 
             if (isHittable == null)
             {
                 // Do default hit behaviour
                 GameObject hitParticle = GameManagers.GetObjectPooler().RequestObject("bullet_hit");
-                Quaternion rot = Quaternion.LookRotation(closestHit.normal);
-                hitParticle.transform.position = closestHit.point;
+                Quaternion rot = Quaternion.LookRotation(closestHit.Value.normal);
+                hitParticle.transform.position = closestHit.Value.point;
                 hitParticle.transform.rotation = rot;
             }
             else
             {
                 // Execute IHittable custom behaviour
-                isHittable.OnHit(states, states.inventory.curWeapon, dir, closestHit.point, closestHit.normal);
+                isHittable.OnHit(states, states.inventory.curWeapon, dir, closestHit.Value.point, closestHit.Value.normal);
             }
         }
     }

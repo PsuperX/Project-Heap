@@ -157,9 +157,9 @@ namespace SA
                 {
                     stats.health -= w.ammoType.damageValue;
                     MultiplayerManager mm = MultiplayerManager.singleton;
-                    mm.BroadcastPlayerHealth(photonID, stats.health,shooter.photonID);
+                    mm.BroadcastPlayerHealth(photonID, stats.health, shooter.photonID);
 
-                    if(stats.health <= 0)
+                    if (stats.health <= 0)
                     {
                         isDead = true;
                     }
