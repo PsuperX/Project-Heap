@@ -21,8 +21,10 @@ namespace SA
 
         public SO.GameEvent onConnectingToMaster;
         public SO.GameEvent onJoinedRoom;
+        public SO.GameEvent onBackFromGame;
         public SO.BoolVariable isConnected;
         public SO.BoolVariable isMultiplayer;
+        public SO.BoolVariable isWinner;
 
         #region Init
         private void Awake()
@@ -110,7 +112,6 @@ namespace SA
 
                 Debug.Log("Found " + roomList.Count + " rooms");
                 m.AddMatches(roomList.ToArray());
-                // Call the listUpdate ...?
             }
         }
 
@@ -179,7 +180,7 @@ namespace SA
             isInGame = true;
         }
 
-        void LoadMainMenu()
+        public void LoadMainMenu()
         {
             StartCoroutine(LoadScene("MainMenu", OnMainMenu));
         }
@@ -218,8 +219,39 @@ namespace SA
         #endregion
 
         #region Setup Methods
+        public void EndMatch(MultiplayerManager mm, bool isWinner)
+        {
+            if (PhotonNetwork.InRoom)
+            {
+                PhotonNetwork.LeaveRoom();
+            }
+
+            this.isWinner.value = isWinner;
+            mm.ClearReferences();
+            LoadMainMenuFromGame();
+        }
+
+        void OnMainMenuCallback()
+        {
+            // Set up cursor
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+
+            // Set end match screen
+            onBackFromGame.Raise();
+            isWinner.value = false;
+        }
+
+        public void LoadMainMenuFromGame()
+        {
+            StartCoroutine(LoadScene("MainMenu", OnMainMenuCallback));
+        }
+
         void OnMainMenu()
         {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+
             isConnected.value = PhotonNetwork.IsConnected;
             if (isConnected.value)
                 OnConnectedToMaster();

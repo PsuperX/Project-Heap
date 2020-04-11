@@ -124,13 +124,18 @@ namespace SA
             int killCount = ++mRef.GetPlayer(photonID).killCount;
             photonView.RPC("RPC_SyncKillCount", RpcTarget.All, shooterID, killCount);
 
-            if(killCount >= 3)
+            if (killCount > 0)
             {
-                Debug.Log("Got him!\nGame is over!!!");
+                BroadcastMatchOver(shooterID);
             }
         }
 
-        public void BroadcastPlayerHealth(int photonID, int health, int shooterID)
+        void BroadcastMatchOver(int photonID)
+        {
+            photonView.RPC("RPC_BroadcastMatchOver", RpcTarget.All, photonID);
+        }
+
+        public void BroadcastPlayerHealth(int photonID, int health, int shooterID) // Only on master
         {
             if (health <= 0)
             {
@@ -145,9 +150,30 @@ namespace SA
         {
             photonView.RPC("RPC_KillPlayer", RpcTarget.All, photonID);
         }
+
+        public void ClearReferences()
+        {
+            if (mRef.referencesParent != null)
+            {
+                Destroy(mRef.referencesParent.gameObject);
+                Destroy(this);
+            }
+        }
         #endregion
 
         #region RPCs
+        [PunRPC]
+        void RPC_BroadcastMatchOver(int photonID)
+        {
+            bool isWinner = false;
+            if (mRef.localPlayer.photonID == photonID)
+            {
+                isWinner = true;
+            }
+
+            MultiplayerLauncher.singleton.EndMatch(this, isWinner);
+        }
+
         [PunRPC]
         void RPC_BroadcastCreateControllers(int photonID, Vector3 pos, Quaternion rot)
         {
@@ -159,9 +185,9 @@ namespace SA
         }
 
         [PunRPC]
-        void RPC_SyncKillCount(int photonID,int killCount)
+        void RPC_SyncKillCount(int photonID, int killCount)
         {
-            if(photonID == mRef.localPlayer.photonID)
+            if (photonID == mRef.localPlayer.photonID)
             {
                 mRef.localPlayer.killCount = killCount;
                 Debug.Log("New kill count: " + killCount);

@@ -71,7 +71,7 @@ namespace SA
 
         public void ClientShoot(StateManager states, Vector3 dir, Vector3 origin)
         {
-            Debug.Log("Client Shoot");
+            //Debug.Log("Client Shoot");
             Ray ray = new Ray(origin, dir);
 
             RaycastHit[] hits;
