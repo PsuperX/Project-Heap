@@ -8,6 +8,7 @@ namespace SO
     public class IntVariable : NumberVariable
     {
         public int value;
+        [SerializeField] bool resetOnExit;
 
         public void Set(int v)
         {
@@ -47,6 +48,12 @@ namespace SO
                 IntVariable i = (IntVariable)v;
                 value += i.value;
             }
+        }
+
+        private void OnDisable()
+        {
+            if (resetOnExit)
+                value = 0;
         }
     }
 }

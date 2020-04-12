@@ -233,13 +233,11 @@ namespace SA
 
         void OnMainMenuCallback()
         {
-            // Set up cursor
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
-
             // Set end match screen
             onBackFromGame.Raise();
             isWinner.value = false;
+
+            OnMainMenu();
         }
 
         public void LoadMainMenuFromGame()

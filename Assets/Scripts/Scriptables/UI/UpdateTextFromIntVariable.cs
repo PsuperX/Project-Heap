@@ -1,16 +1,12 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using SO;
-using UnityEngine.UI;
+﻿using TMPro;
 
 namespace SO.UI
 {
     public class UpdateTextFromIntVariable : UIPropertyUpdater
     {
         public IntVariable targetVariable;
-        public Text targetText;
-        
+        public TextMeshProUGUI targetText;
+
         /// <summary>
         /// Use this to update a text UI element based on the target integer variable
         /// </summary>
@@ -18,7 +14,7 @@ namespace SO.UI
         {
             targetText.text = targetVariable.value.ToString();
         }
-        
+
         public void Raise(string target)
         {
             targetText.text = target;

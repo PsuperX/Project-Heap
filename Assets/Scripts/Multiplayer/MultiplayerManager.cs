@@ -6,6 +6,7 @@ namespace SA
 {
     public class MultiplayerManager : MonoBehaviourPun, IPunInstantiateMagicCallback
     {
+        #region Variables
         MultiplayerReferences mRef;
         public MultiplayerReferences GetMRef()
         {
@@ -16,6 +17,22 @@ namespace SA
 
         public RayBallistics ballistics;
 
+        [SerializeField]
+        int winKillcount = 20;
+        [SerializeField]
+        float startTime = 30;
+        float currentTime;
+        float timerInternal;
+        [SerializeField]
+        SO.IntVariable timerInSeconds;
+        [SerializeField]
+        SO.GameEvent timerUpdate;
+
+        bool isMaster;
+        bool inGame;
+        bool endMatch;
+        #endregion
+
         public void OnPhotonInstantiate(PhotonMessageInfo info) // Interface
         {
             singleton = this;
@@ -25,6 +42,8 @@ namespace SA
             DontDestroyOnLoad(mRef.referencesParent.gameObject);
 
             InstanciateNetworkPrint();
+
+            isMaster = PhotonNetwork.IsMasterClient;
         }
 
         void InstanciateNetworkPrint()
@@ -50,8 +69,37 @@ namespace SA
         List<PlayerHolder> playersToRespawn = new List<PlayerHolder>();
         private void Update()
         {
+            if (!inGame || endMatch)
+                return;
+
             float deltaTime = Time.deltaTime;
 
+            currentTime -= deltaTime;
+            timerInternal += deltaTime;
+            if (timerInternal >= 1)
+            {
+                timerInternal = 0;
+                timerInSeconds.value = Mathf.RoundToInt(currentTime);
+                timerUpdate.Raise();
+
+                if (isMaster)
+                {
+                    photonView.RPC("RPC_BroadcastTime", RpcTarget.Others, currentTime);
+                }
+            }
+            if (currentTime <= 0)
+            {
+                TimerRanOut();
+            }
+
+            if (!isMaster)
+                return;
+
+            CheckAndRespawnPlayers(deltaTime);
+        }
+
+        private void CheckAndRespawnPlayers(float deltaTime)
+        {
             for (int i = playersToRespawn.Count - 1; i >= 0; i--)
             {
                 playersToRespawn[i].spawnTimer += deltaTime;
@@ -76,13 +124,38 @@ namespace SA
             }
         }
 
+        private void TimerRanOut()
+        {
+            // Get all players list
+            List<PlayerHolder> players = mRef.GetPlayers();
+
+            // Winner is who has more kills
+            int killCount = 0;
+            int winnerID = 0;
+            for (int i = 0; i < players.Count; i++)
+            {
+                if (players[i].killCount > killCount)
+                {
+                    killCount = players[i].killCount;
+                    winnerID = players[i].photonID;
+                }
+            }
+
+            BroadcastMatchOver(winnerID);
+            endMatch = true;
+        }
+
         #region MyCalls
+        void BeginMatch()
+        {
+            currentTime = startTime;
+        }
+
         public void FindSpawnPositionOnLevel()
         {
-            if (PhotonNetwork.IsMasterClient)
+            if (isMaster)
             {
                 mRef.spawnPositions = FindObjectsOfType<SpawnPosition>();
-                AssignSpawnPositions();
             }
         }
 
@@ -101,16 +174,22 @@ namespace SA
 
         public void BroadcastSceneChange()
         {
-            if (PhotonNetwork.IsMasterClient)
+            if (isMaster)
                 photonView.RPC("RPC_SceneChange", RpcTarget.All);
         }
 
         void LevelLoadedCallback() // After scene was loaded
         {
             Debug.Log("Level Loaded");
+            BeginMatch();
 
-            if (PhotonNetwork.IsMasterClient)
+            if (isMaster)
+            {
                 FindSpawnPositionOnLevel();
+                AssignSpawnPositions();
+            }
+
+            inGame = true;
         }
 
         public void BroadcastShootWeapon(StateManager states, Vector3 dir, Vector3 origin)
@@ -124,7 +203,7 @@ namespace SA
             int killCount = ++mRef.GetPlayer(photonID).killCount;
             photonView.RPC("RPC_SyncKillCount", RpcTarget.All, shooterID, killCount);
 
-            if (killCount > 0)
+            if (killCount >= winKillcount)
             {
                 BroadcastMatchOver(shooterID);
             }
@@ -162,6 +241,13 @@ namespace SA
         #endregion
 
         #region RPCs
+        [PunRPC]
+        void RPC_BroadcastTime(float masterTime)
+        {
+            if (!isMaster)
+                currentTime = masterTime;
+        }
+
         [PunRPC]
         void RPC_BroadcastMatchOver(int photonID)
         {
