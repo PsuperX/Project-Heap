@@ -17,16 +17,12 @@ namespace SA
 
         public RayBallistics ballistics;
 
-        [SerializeField]
-        int winKillcount = 20;
-        [SerializeField]
-        float startTime = 30;
+        public int winKillcount = 20;
+        public float startTime = 30;
         float currentTime;
         float timerInternal;
-        [SerializeField]
-        SO.IntVariable timerInSeconds;
-        [SerializeField]
-        SO.GameEvent timerUpdate;
+        public SO.IntVariable timerInSeconds;
+        public SO.GameEvent timerUpdate;
 
         bool isMaster;
         bool inGame;
@@ -49,8 +45,11 @@ namespace SA
         void InstanciateNetworkPrint()
         {
             PlayerProfile profile = GameManagers.GetPlayerProfile();
-            object[] data = new object[1];
-            data[0] = profile.itemIds[0];
+            object[] data = new object[]
+            {
+                profile.itemIds[0],
+                profile.modelID
+            };
 
             GameObject go = PhotonNetwork.Instantiate("NetworkPrint", Vector3.zero, Quaternion.identity, 0, data);
         }

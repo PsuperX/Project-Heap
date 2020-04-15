@@ -8,7 +8,7 @@ namespace SO
     public class IntVariable : NumberVariable
     {
         public int value;
-        [SerializeField] bool resetOnExit;
+        public bool resetOnExit;
 
         public void Set(int v)
         {

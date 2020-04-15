@@ -23,9 +23,12 @@ namespace SA
             Debug.Log("Instanciate Controller");
             GameObject inputHandler = Instantiate(Resources.Load("InputHandler")) as GameObject;
 
-            object[] data = new object[2];
-            data[0] = photonID;
-            data[1] = photonView.InstantiationData[0];
+            object[] data = new object[]
+            {
+                photonID,
+                photonView.InstantiationData[0], // Weapon ID
+                photonView.InstantiationData[1]  // Model ID
+            };
 
             PhotonNetwork.Instantiate("MultiplayerController", pos, rot, 0, data);
         }

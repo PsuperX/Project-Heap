@@ -87,24 +87,41 @@ namespace SA
 
         private void Start()
         {
-            mTransform = transform;
-            rigid = GetComponent<Rigidbody>();
-            stats.health = 100;
-            healthChangedFlag = true;
-            characterHook = GetComponentInChildren<CharacterHook>();
+            InitReferences();
 
             if (isOfflineController)
             {
                 PlayerProfile profile = GameManagers.GetPlayerProfile();
 
-                ClothItem cloth = GameManagers.GetResourcesManager().GetClothItem(profile.modelID);
-                characterHook.Init(cloth);
+                LoadCharacterModel(profile.modelID);
 
                 if (offlineActions)
                     offlineActions.Execute(this);
             }
 
             hashes = new AnimHashes();
+        }
+
+        bool isInit;
+        public void InitReferences()
+        {
+            if (!isInit)
+            {
+                mTransform = transform;
+                rigid = GetComponent<Rigidbody>();
+                stats.health = 100;
+                healthChangedFlag = true;
+                characterHook = GetComponentInChildren<CharacterHook>();
+
+                isInit = true;
+            }
+        }
+
+        public void LoadCharacterModel(string modelID)
+        {
+            Debug.Log("Loading character with id: " + modelID);
+            ClothItem cloth = GameManagers.GetResourcesManager().GetClothItem(modelID);
+            characterHook.Init(cloth);
         }
 
         private void FixedUpdate()
