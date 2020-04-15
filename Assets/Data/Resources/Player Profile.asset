@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d566359ed8b470e409d91746e1f0113e, type: 3}
   m_Name: Player Profile
   m_EditorClassIdentifier: 
+  modelID: beta
   itemIds:
   - AK

@@ -26,6 +26,7 @@ namespace SA
             public Vector3 aimPosition;
         }
 
+        #region States
         public bool isLocal;
         public bool isAiming;
         public bool isInteracting;
@@ -35,11 +36,14 @@ namespace SA
         public bool isVaulting;
         public bool isGrounded;
         public bool isDead;
+        #endregion
 
+        #region Flags
         public bool shootingFlag;
         public bool reloadingFlag;
         public bool vaultingFlag;
         public bool healthChangedFlag;
+        #endregion
 
         public void SetCrouching()
         {
@@ -79,15 +83,26 @@ namespace SA
         public bool isOfflineController;
         public StateActions offlineActions;
 
+        CharacterHook characterHook;
+
         private void Start()
         {
             mTransform = transform;
             rigid = GetComponent<Rigidbody>();
             stats.health = 100;
             healthChangedFlag = true;
+            characterHook = GetComponentInChildren<CharacterHook>();
 
             if (isOfflineController)
-                offlineActions.Execute(this);
+            {
+                PlayerProfile profile = GameManagers.GetPlayerProfile();
+
+                ClothItem cloth = GameManagers.GetResourcesManager().GetClothItem(profile.modelID);
+                characterHook.Init(cloth);
+
+                if (offlineActions)
+                    offlineActions.Execute(this);
+            }
 
             hashes = new AnimHashes();
         }
@@ -166,19 +181,7 @@ namespace SA
                 }
             }
 
-            //if (stats.health <= 0)
-            //{
-            //    stats.health = 0;
-            //    // Raise event for death
-            //    if (!isDead)
-            //    {
-            //        Debug.Log("Dead");
-            //        isDead = true;
-            //        MultiplayerManager.singleton.BroadcastKillPlayer(photonID, shooter.photonID);
-            //    }
-            //}
-
-            //healthChangedFlag = true;
+            healthChangedFlag = true;
         }
 
         public void KillPlayer()

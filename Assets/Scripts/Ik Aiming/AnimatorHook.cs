@@ -127,6 +127,9 @@ namespace SA
 
         void OnAnimatorIK(int layerIndex)
         {
+            if (states.isDead)
+                return;
+
             HandleWeights();
 
             anim.SetLookAtWeight(l_weight, b_weight, 1, 1, 1);

@@ -40,12 +40,18 @@ namespace SA
                 Debug.LogError("Weapon with ID: " + targetID + " was not found!");
                 return null;
             }
+        }
 
+        public ClothItem GetClothItem(string targetID)
+        {
+            return (ClothItem)GetItem(targetID);
         }
 
         Item GetItem(string targetID)
         {
             itemDict.TryGetValue(targetID, out Item retVal);
+            if(retVal==null)
+                Debug.LogError("Item with ID: " + targetID + " was not found!");
             return retVal;
         }
     }
