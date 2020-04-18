@@ -24,8 +24,9 @@ namespace SA
             // Get instantion data
             object[] data = photonView.InstantiationData;
             states.photonID = (int)data[0];
-            string modelID = (string)data[2];
 
+            // Load character model
+            string modelID = (string)data[2];
             states.LoadCharacterModel(modelID);
 
             MultiplayerManager m = MultiplayerManager.singleton;
@@ -33,6 +34,9 @@ namespace SA
 
             PlayerHolder playerHolder = m.GetMRef().GetPlayer(states.photonID);
             playerHolder.states = states;
+
+            string weaponId = (string)data[1];
+            states.inventory.weaponID = weaponId;
 
             if (photonView.IsMine)
             {
@@ -42,10 +46,6 @@ namespace SA
             }
             else
             {
-                string weaponId = (string)data[1];
-
-                states.inventory.weaponID = weaponId;
-
                 states.isLocal = false;
                 states.SetCurrentState(client);
                 initClientPlayer.Execute(states);
